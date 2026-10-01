@@ -20,13 +20,19 @@
   const VERT = `attribute vec2 a; void main(){ gl_Position = vec4(a,0.,1.); }`;
 
   const FRAG = `
+#ifdef GL_FRAGMENT_PRECISION_HIGH
 precision highp float;
+#else
+precision mediump float;
+#endif
 uniform vec2 uRes; uniform vec2 uLight; uniform float uLit;
 uniform vec3 uC1; uniform vec3 uC2; uniform vec3 uC3;
 uniform float uFreq; uniform float uWarp; uniform float uFigure; uniform float uPores;
 uniform float uSeed; uniform float uScale; uniform float uSheen; uniform vec2 uKnot;
 
-float hash(vec2 p){ p = fract(p*vec2(123.34,456.21)); p += dot(p,p+45.32); return fract(p.x*p.y); }
+// Lattice hash kept to small magnitudes: large products let mobile GPU compilers
+// round neighbouring cells differently, which shows up as hard seams.
+float hash(vec2 p){ p = mod(p, 289.); vec3 p3 = fract(vec3(p.xyx) * .1031); p3 += dot(p3, p3.yzx + 33.33); return fract((p3.x + p3.y) * p3.z); }
 float noise(vec2 p){ vec2 i=floor(p), f=fract(p); vec2 u=f*f*(3.-2.*f);
   return mix(mix(hash(i),hash(i+vec2(1,0)),u.x), mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),u.x), u.y); }
 float fbm(vec2 p){ float v=0., a=.5; for(int i=0;i<5;i++){ v+=a*noise(p); p=p*2.03+17.1; a*=.5; } return v; }
