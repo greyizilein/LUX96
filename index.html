@@ -3,378 +3,370 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LUX96 Furnitures — Handcrafted Wood Furniture &amp; Interior Woodwork</title>
-  <meta name="description" content="LUX96 Furnitures designs and builds handcrafted, made-to-measure furniture and interior woodwork — dining tables, wardrobes, kitchens, doors and commercial fit-outs.">
-  <meta name="theme-color" content="#3b2a1e">
-  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="canonical" href="https://lux96furnitures.com/">
-
+  <title>LUX96 Furnitures — Bespoke Furniture &amp; Joinery</title>
+  <meta name="description" content="LUX96 Furnitures designs and builds bespoke, solid-wood furniture and joinery: dining tables, wardrobes, kitchens, doors and commercial fit-outs. Built from the grain up.">
+  <meta name="theme-color" content="#120e0b">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="LUX96 Furnitures — Crafted to Last">
-  <meta property="og:description" content="Handcrafted, made-to-measure furniture and interior woodwork.">
-  <meta property="og:url" content="https://lux96furnitures.com/">
-  <meta property="og:image" content="https://lux96furnitures.com/assets/img/table.svg">
-
+  <meta property="og:title" content="LUX96 Furnitures — Built from the grain up">
+  <meta property="og:description" content="Bespoke solid-wood furniture and joinery, made to measure.">
+  <script>document.documentElement.classList.add("js");</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/styles.css">
-
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "FurnitureStore",
     "name": "LUX96 Furnitures",
-    "description": "Handcrafted, made-to-measure furniture and interior woodwork.",
-    "url": "https://lux96furnitures.com/",
-    "logo": "https://lux96furnitures.com/assets/img/logo.svg",
+    "description": "Bespoke solid-wood furniture and joinery, made to measure.",
     "email": "hello@lux96furnitures.com",
     "telephone": "+000 000 000 0000"
   }
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip" href="#main">Skip to content</a>
 
-  <header class="site-header" id="top">
-    <div class="container nav-wrap">
-      <a class="brand" href="#top" aria-label="LUX96 Furnitures home">
-        <img src="/assets/img/logo.svg" alt="" width="40" height="40">
-        <span>LUX96 <small>Furnitures</small></span>
-      </a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
-      <nav id="site-nav" class="site-nav" aria-label="Main">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#work">Our Work</a>
-        <a href="#process">Process</a>
-        <a href="#contact" class="btn btn-small">Get a Quote</a>
-      </nav>
-    </div>
+  <!-- Preloader: rings grow 00 → 96 -->
+  <div class="loader" aria-hidden="true">
+    <svg class="loader-rings" viewBox="0 0 200 200"></svg>
+    <div class="loader-count"><span>00</span></div>
+    <div class="loader-word">LUX96</div>
+  </div>
+
+  <div class="cursor" aria-hidden="true"><span class="cursor-label"></span></div>
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="top">
+    <a class="nav-logo" href="#top" aria-label="LUX96 Furnitures, back to top">
+      <img src="assets/img/logo.svg" alt="" width="34" height="34">
+      <span class="nav-word">LUX96</span>
+    </a>
+    <nav class="nav-links" id="nav-links" aria-label="Main">
+      <a href="#studio"><i>01</i>Studio</a>
+      <a href="#work"><i>02</i>Work</a>
+      <a href="#timber"><i>03</i>Timber</a>
+      <a href="#build"><i>04</i>Build a table</a>
+      <a href="#contact"><i>05</i>Contact</a>
+    </nav>
+    <a class="nav-cta" href="#contact" data-cursor="Talk">Commission a piece</a>
+    <button class="nav-burger" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu"><span></span><span></span></button>
   </header>
 
   <main id="main">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <p class="eyebrow">Handcrafted furniture &amp; woodwork</p>
-          <h1>Crafted to last.<br><em>Designed for you.</em></h1>
-          <p class="lead">LUX96 builds made-to-measure furniture and interior woodwork from carefully selected timber — pieces that fit your space, your style and your life, for decades.</p>
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-label="Introduction">
+      <canvas class="hero-slab" aria-hidden="true"></canvas>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <p class="label hero-top"><span>Bespoke furniture &amp; joinery</span><span>Workshop-built · Made to measure</span></p>
+        <h1 class="hero-title">
+          <span class="line"><span>Built from</span></span>
+          <span class="line"><span><em>the grain</em> up.</span></span>
+        </h1>
+        <div class="hero-foot">
+          <p class="hero-lede">Solid-wood furniture and interiors, designed around your space and built to outlast the people who order them.</p>
           <div class="hero-actions">
-            <a href="#contact" class="btn">Start your project</a>
-            <a href="#work" class="btn btn-ghost">See our work</a>
-          </div>
-          <ul class="hero-stats" aria-label="Highlights">
-            <li><strong>100%</strong><span>Made to order</span></li>
-            <li><strong>Solid</strong><span>Hardwood construction</span></li>
-            <li><strong>End‑to‑end</strong><span>Design, build &amp; install</span></li>
-          </ul>
-        </div>
-        <div class="hero-art reveal">
-          <img src="/assets/img/table.svg" alt="Illustration of a solid wood dining table" width="400" height="300">
-          <div class="hero-badge">
-            <span>LUX96</span>
-            <small>Workshop‑built</small>
+            <a class="btn btn-brass" href="#build" data-cursor="Build">Design your table</a>
+            <a class="btn btn-line" href="#work" data-cursor="View">See the work</a>
           </div>
         </div>
+        <div class="hero-meta" aria-hidden="true">
+          <span class="label">Specimen</span>
+          <strong>American Black Walnut</strong>
+          <span class="label hero-readout">Move to light the grain · <b class="lx">0.62</b> / <b class="ly">0.58</b></span>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#studio" aria-label="Scroll to studio"><span></span></a>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Dining tables</span><i>✦</i><span>Wardrobes</span><i>✦</i><span>Kitchens</span><i>✦</i><span>Doors</span><i>✦</i><span>Panelling</span><i>✦</i><span>Beds</span><i>✦</i><span>Fit-outs</span><i>✦</i><span>Restoration</span><i>✦</i>
+        <span>Dining tables</span><i>✦</i><span>Wardrobes</span><i>✦</i><span>Kitchens</span><i>✦</i><span>Doors</span><i>✦</i><span>Panelling</span><i>✦</i><span>Beds</span><i>✦</i><span>Fit-outs</span><i>✦</i><span>Restoration</span><i>✦</i>
+      </div>
+    </div>
+
+    <!-- ============ STUDIO / MANIFESTO ============ -->
+    <section class="studio" id="studio">
+      <div class="wrap">
+        <p class="label sec-label">01 — The Studio</p>
+        <p class="manifesto" data-words>
+          LUX96 is a woodworking studio for people who would rather buy once. We draw every piece around the room it will live in, choose the boards ourselves, and join them so they stay joined — no flat-pack, no filler, no shortcuts you will find in ten years' time.
+        </p>
+        <div class="facts">
+          <div class="fact"><b data-count="100">0</b><span>% made to measure</span></div>
+          <div class="fact"><b data-count="6">0</b><span>core timbers in the rack</span></div>
+          <div class="fact"><b data-count="0">0</b><span>flat-pack. Ever.</span></div>
+          <div class="fact"><b data-count="1">0</b><span>workshop, start to finish</span></div>
+        </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <div class="container split">
-        <div class="reveal">
-          <p class="eyebrow">Our story</p>
-          <h2>Wood, worked with care.</h2>
+    <!-- ============ RINGS ============ -->
+    <section class="rings" aria-label="Time in timber">
+      <div class="rings-sticky">
+        <canvas class="rings-canvas" aria-hidden="true"></canvas>
+        <div class="rings-copy">
+          <p class="label">Every ring is a year</p>
+          <h2 class="display">Some trees take <em><span class="ring-n">0</span> years</em><br>to give us one board.</h2>
+          <p class="rings-sub">So we don't waste it. Grain is matched across doors and drawer fronts, offcuts become handles and pulls, and every piece is built to be repaired, not replaced.</p>
         </div>
-        <div class="reveal">
-          <p>LUX96 Furnitures is a woodworking studio that believes good furniture should be built once and loved for a lifetime. Every piece starts as a conversation and ends as something solid, beautiful and uniquely yours.</p>
-          <p>We combine traditional joinery with modern tools and finishes, working closely with homeowners, interior designers, offices and hospitality spaces to bring ideas to life — from a single bedside table to a fully fitted home.</p>
-          <ul class="ticks">
-            <li>Quality timber, chosen and seasoned for stability</li>
-            <li>Durable joinery and hand-applied finishes</li>
-            <li>Honest pricing and clear timelines</li>
-            <li>Delivery and professional installation</li>
+      </div>
+    </section>
+
+    <!-- ============ WORK (horizontal) ============ -->
+    <section class="work" id="work">
+      <div class="work-head wrap">
+        <p class="label sec-label">02 — Selected pieces</p>
+        <h2 class="display">The <em>catalogue</em></h2>
+        <p class="work-note">Every piece is commissioned — sizes, timber and finish are yours to decide. Scroll →</p>
+      </div>
+      <div class="work-pin">
+        <div class="work-sticky">
+        <div class="work-track">
+          <article class="piece" data-cursor="Enquire">
+            <div class="piece-media"><canvas data-piece="table" data-species="walnut"></canvas></div>
+            <div class="piece-meta"><span class="label">No. 01</span><h3>Refectory Table</h3><p>Walnut · 220 × 95 × 76 cm · seats 8–10</p></div>
+          </article>
+          <article class="piece" data-cursor="Enquire">
+            <div class="piece-media"><canvas data-piece="sideboard" data-species="oak"></canvas></div>
+            <div class="piece-meta"><span class="label">No. 02</span><h3>Three-Door Sideboard</h3><p>White oak · brass pulls · 180 × 45 × 82 cm</p></div>
+          </article>
+          <article class="piece" data-cursor="Enquire">
+            <div class="piece-media"><canvas data-piece="wardrobe" data-species="iroko"></canvas></div>
+            <div class="piece-meta"><span class="label">No. 03</span><h3>Bookmatched Wardrobe</h3><p>Iroko · full-height bar pulls · 120 × 60 × 210 cm</p></div>
+          </article>
+          <article class="piece" data-cursor="Enquire">
+            <div class="piece-media"><canvas data-piece="bed" data-species="mahogany"></canvas></div>
+            <div class="piece-meta"><span class="label">No. 04</span><h3>Platform Bed</h3><p>African mahogany · king · slatted base</p></div>
+          </article>
+          <article class="piece" data-cursor="Enquire">
+            <div class="piece-media"><canvas data-piece="chair" data-species="teak"></canvas></div>
+            <div class="piece-meta"><span class="label">No. 05</span><h3>Lounge Chair</h3><p>Teak frame · leather cushions</p></div>
+          </article>
+          <article class="piece" data-cursor="Enquire">
+            <div class="piece-media"><canvas data-piece="shelf" data-species="ash"></canvas></div>
+            <div class="piece-meta"><span class="label">No. 06</span><h3>Library Shelf</h3><p>Ash · 100 × 35 × 200 cm · adjustable</p></div>
+          </article>
+          <article class="piece" data-cursor="Enquire">
+            <div class="piece-media"><canvas data-piece="desk" data-species="walnut"></canvas></div>
+            <div class="piece-meta"><span class="label">No. 07</span><h3>Pedestal Desk</h3><p>Walnut · three drawers · 150 × 70 cm</p></div>
+          </article>
+          <article class="piece" data-cursor="Enquire">
+            <div class="piece-media"><canvas data-piece="door" data-species="oak"></canvas></div>
+            <div class="piece-meta"><span class="label">No. 08</span><h3>Two-Panel Door</h3><p>Solid oak · stile &amp; rail · made to opening</p></div>
+          </article>
+          <div class="piece piece-end">
+            <p class="display">Something<br><em>not on the list?</em></p>
+            <a class="btn btn-brass" href="#contact" data-cursor="Talk">Tell us about it</a>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <section class="services" id="services">
+      <div class="wrap">
+        <p class="label sec-label">What we make</p>
+        <ol class="svc-list">
+          <li class="svc" data-species="walnut"><span class="svc-n">01</span><h3>Custom furniture</h3><p>Tables, chairs, beds, consoles, sideboards — drawn to your measurements and built in solid timber.</p></li>
+          <li class="svc" data-species="oak"><span class="svc-n">02</span><h3>Wardrobes &amp; kitchens</h3><p>Fitted wardrobes, kitchen cabinetry, vanities and storage that use every centimetre of the room.</p></li>
+          <li class="svc" data-species="iroko"><span class="svc-n">03</span><h3>Doors &amp; panelling</h3><p>Solid doors, frames, wall panelling, staircases, ceilings and media walls, finished to match.</p></li>
+          <li class="svc" data-species="mahogany"><span class="svc-n">04</span><h3>Commercial fit-outs</h3><p>Reception counters, boardroom tables, restaurant and hotel furniture, delivered to spec and on schedule.</p></li>
+          <li class="svc" data-species="teak"><span class="svc-n">05</span><h3>Restoration</h3><p>Repairs, re-gluing, refinishing and re-upholstery that bring tired or treasured pieces back.</p></li>
+          <li class="svc" data-species="ash"><span class="svc-n">06</span><h3>Design consultation</h3><p>Layouts, drawings, timber and finish samples — so you know exactly what you are getting before we cut.</p></li>
+        </ol>
+      </div>
+      <div class="svc-float" aria-hidden="true"></div>
+    </section>
+
+    <!-- ============ TIMBER LIBRARY ============ -->
+    <section class="timber" id="timber">
+      <div class="wrap timber-grid">
+        <div class="timber-copy">
+          <p class="label sec-label">03 — The timber rack</p>
+          <h2 class="display">Choose your <em>wood</em>.</h2>
+          <div class="species-tabs" role="tablist" aria-label="Timber species"></div>
+          <div class="species-card" aria-live="polite">
+            <h3 class="species-name"></h3>
+            <p class="species-desc"></p>
+            <dl class="species-spec">
+              <div><dt>Tone</dt><dd class="sp-tone"></dd></div>
+              <div><dt>Character</dt><dd class="sp-char"></dd></div>
+              <div><dt>Best for</dt><dd class="sp-best"></dd></div>
+              <div class="hard"><dt>Hardness</dt><dd><span class="bar"><span class="sp-hard"></span></span><small class="sp-janka"></small></dd></div>
+            </dl>
+          </div>
+        </div>
+        <div class="timber-specimen" data-cursor="Light">
+          <canvas class="specimen-slab" aria-hidden="true"></canvas>
+          <span class="label specimen-tag">Live specimen · oiled finish</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ JOINERY ============ -->
+    <section class="joinery" aria-label="Joinery">
+      <div class="joinery-sticky wrap">
+        <div class="joinery-copy">
+          <p class="label">The joint is the promise</p>
+          <h2 class="display">Held by <em>wood</em>,<br>not by luck.</h2>
+          <p>Screws loosen and glue lines fail. Interlocking joints get tighter under load. We cut dovetails, mortise &amp; tenons and bridle joints so your piece survives moves, children and decades.</p>
+          <ul class="joints">
+            <li><b>Dovetail</b> drawers &amp; carcasses</li>
+            <li><b>Mortise &amp; tenon</b> tables &amp; frames</li>
+            <li><b>Bridle</b> legs &amp; rails</li>
+            <li><b>Tongue &amp; groove</b> panels &amp; tops</li>
           </ul>
         </div>
+        <svg class="dovetail" viewBox="0 0 520 420" aria-hidden="true">
+          <defs>
+            <pattern id="gA" patternUnits="userSpaceOnUse" width="520" height="420"><image class="dt-tex-a" width="520" height="420" preserveAspectRatio="xMidYMid slice"/></pattern>
+            <pattern id="gB" patternUnits="userSpaceOnUse" width="520" height="420"><image class="dt-tex-b" width="520" height="420" preserveAspectRatio="xMidYMid slice"/></pattern>
+          </defs>
+          <!-- pin board (fixed) -->
+          <path class="dt-pins" fill="url(#gA)" d="M60 230 H460 V380 H60 Z M60 230 L60 230" />
+          <!-- tail board (slides down) -->
+          <g class="dt-tails"><path fill="url(#gB)" d=""/></g>
+          <text class="dt-cap" x="260" y="410" text-anchor="middle">Through dovetail · cut by hand &amp; machine</text>
+        </svg>
       </div>
     </section>
 
-    <!-- SERVICES -->
-    <section id="services" class="section section-alt">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">What we do</p>
-          <h2>Services</h2>
-          <p>From one-off statement pieces to complete interiors, we handle design, fabrication and installation in-house.</p>
+    <!-- ============ CONFIGURATOR ============ -->
+    <section class="build" id="build">
+      <div class="wrap">
+        <div class="build-head">
+          <p class="label sec-label">04 — Build a table</p>
+          <h2 class="display">Design it <em>here</em>. We'll build it there.</h2>
+          <p>Shape, timber and size update live. When it looks right, send the spec straight to the workshop.</p>
         </div>
-        <div class="cards">
-          <article class="card reveal">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M3 10h18M5 10v9M19 10v9M7 10V6h10v4"/></svg>
+        <div class="build-grid">
+          <div class="build-views">
+            <div class="view view-plan"><canvas class="cfg-plan" aria-label="Plan view of your table" role="img"></canvas><span class="label view-tag">Plan</span></div>
+            <div class="view view-side"><canvas class="cfg-side" aria-label="Elevation view of your table" role="img"></canvas><span class="label view-tag">Elevation</span></div>
+          </div>
+          <form class="build-ctrl" id="cfg" aria-label="Table options">
+            <fieldset><legend class="label">Shape</legend>
+              <div class="seg">
+                <label><input type="radio" name="shape" value="rect" checked><span>Rectangle</span></label>
+                <label><input type="radio" name="shape" value="oval"><span>Oval</span></label>
+                <label><input type="radio" name="shape" value="round"><span>Round</span></label>
+              </div>
+            </fieldset>
+            <fieldset><legend class="label">Timber</legend>
+              <div class="chips" id="cfg-species"></div>
+            </fieldset>
+            <fieldset class="rng rng-length"><legend class="label">Length <output id="o-length">220 cm</output></legend>
+              <input type="range" name="length" min="140" max="320" step="10" value="220" aria-label="Length in centimetres">
+            </fieldset>
+            <fieldset class="rng"><legend class="label"><span class="w-label">Width</span> <output id="o-width">95 cm</output></legend>
+              <input type="range" name="width" min="80" max="120" step="5" value="95" aria-label="Width in centimetres">
+            </fieldset>
+            <fieldset><legend class="label">Base</legend>
+              <div class="seg">
+                <label><input type="radio" name="base" value="legs" checked><span>Four legs</span></label>
+                <label><input type="radio" name="base" value="trestle"><span>Trestle</span></label>
+                <label><input type="radio" name="base" value="pedestal"><span>Pedestal</span></label>
+              </div>
+            </fieldset>
+            <fieldset><legend class="label">Edge</legend>
+              <div class="seg">
+                <label><input type="radio" name="edge" value="square"><span>Square</span></label>
+                <label><input type="radio" name="edge" value="chamfer" checked><span>Chamfer</span></label>
+                <label><input type="radio" name="edge" value="rounded"><span>Rounded</span></label>
+              </div>
+            </fieldset>
+            <div class="spec">
+              <div><span class="label">Seats</span><b class="cfg-seats">8</b></div>
+              <div><span class="label">Top</span><b class="cfg-dims">220 × 95</b></div>
+              <div><span class="label">Height</span><b>76 cm</b></div>
             </div>
-            <h3>Custom Furniture</h3>
-            <p>Dining tables, chairs, beds, sofas frames, consoles and more — designed around your measurements and taste.</p>
-          </article>
-          <article class="card reveal">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M12 3v18M10 12h0M14 12h0"/></svg>
-            </div>
-            <h3>Wardrobes &amp; Kitchens</h3>
-            <p>Built-in wardrobes, kitchen cabinetry, vanities and storage that make the most of every centimetre.</p>
-          </article>
-          <article class="card reveal">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="1"/><circle cx="15" cy="12" r="1"/></svg>
-            </div>
-            <h3>Doors &amp; Interior Woodwork</h3>
-            <p>Solid doors, wall panelling, staircases, ceilings and TV units finished to match your interior.</p>
-          </article>
-          <article class="card reveal">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12M9 21v-6h6v6"/></svg>
-            </div>
-            <h3>Commercial Fit‑outs</h3>
-            <p>Office desks, reception counters, restaurant and hotel furniture delivered to spec and on schedule.</p>
-          </article>
-          <article class="card reveal">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M14 4l6 6-10 10H4v-6z M12 6l6 6"/></svg>
-            </div>
-            <h3>Restoration &amp; Refinishing</h3>
-            <p>Repair, re-upholstery and refinishing that brings tired or treasured pieces back to life.</p>
-          </article>
-          <article class="card reveal">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16zM14 6l3 3"/></svg>
-            </div>
-            <h3>Design Consultation</h3>
-            <p>Not sure where to start? We help with layouts, materials, finishes and drawings before anything is built.</p>
-          </article>
+            <button type="button" class="btn btn-brass btn-wide cfg-send" data-cursor="Send">Send this spec on WhatsApp</button>
+            <p class="fine">Not a fixed price list — we'll reply with a quote and lead time.</p>
+          </form>
         </div>
       </div>
     </section>
 
-    <!-- WORK / GALLERY -->
-    <section id="work" class="section">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">Portfolio</p>
-          <h2>Our Work</h2>
-          <p>A selection of the kinds of pieces we make. Every project is built to order.</p>
-        </div>
-        <div class="filters" role="group" aria-label="Filter projects">
-          <button class="filter is-active" data-filter="all" aria-pressed="true">All</button>
-          <button class="filter" data-filter="living" aria-pressed="false">Living &amp; Dining</button>
-          <button class="filter" data-filter="bedroom" aria-pressed="false">Bedroom</button>
-          <button class="filter" data-filter="kitchen" aria-pressed="false">Kitchen &amp; Fitted</button>
-          <button class="filter" data-filter="office" aria-pressed="false">Office &amp; Commercial</button>
-        </div>
-        <ul class="gallery">
-          <li class="tile" data-cat="living">
-            <figure><img src="/assets/img/table.svg" alt="Solid wood dining table" loading="lazy" width="400" height="300">
-              <figcaption><strong>Dining Table</strong><span>Solid hardwood, seats 8</span></figcaption></figure>
-          </li>
-          <li class="tile" data-cat="living">
-            <figure><img src="/assets/img/chair.svg" alt="Handcrafted lounge chair" loading="lazy" width="400" height="300">
-              <figcaption><strong>Lounge Chair</strong><span>Upholstered seat, wood frame</span></figcaption></figure>
-          </li>
-          <li class="tile" data-cat="living">
-            <figure><img src="/assets/img/cabinet.svg" alt="Walnut sideboard" loading="lazy" width="400" height="300">
-              <figcaption><strong>Sideboard</strong><span>Three-door, brass pulls</span></figcaption></figure>
-          </li>
-          <li class="tile" data-cat="bedroom">
-            <figure><img src="/assets/img/bed.svg" alt="Platform bed frame" loading="lazy" width="400" height="300">
-              <figcaption><strong>Platform Bed</strong><span>King size, padded headboard</span></figcaption></figure>
-          </li>
-          <li class="tile" data-cat="living">
-            <figure><img src="/assets/img/shelf.svg" alt="Open bookshelf" loading="lazy" width="400" height="300">
-              <figcaption><strong>Bookshelf</strong><span>Open shelving unit</span></figcaption></figure>
-          </li>
-          <li class="tile" data-cat="office">
-            <figure><img src="/assets/img/desk.svg" alt="Writing desk" loading="lazy" width="400" height="300">
-              <figcaption><strong>Writing Desk</strong><span>With drawer pedestal</span></figcaption></figure>
-          </li>
-          <li class="tile" data-cat="kitchen">
-            <figure><img src="/assets/img/kitchen.svg" alt="Custom kitchen cabinetry" loading="lazy" width="400" height="300">
-              <figcaption><strong>Fitted Kitchen</strong><span>Upper &amp; base cabinets</span></figcaption></figure>
-          </li>
-          <li class="tile" data-cat="kitchen">
-            <figure><img src="/assets/img/door.svg" alt="Solid wood panel door" loading="lazy" width="400" height="300">
-              <figcaption><strong>Panel Door</strong><span>Solid wood, made to size</span></figcaption></figure>
-          </li>
-          <li class="tile" data-cat="office">
-            <figure><img src="/assets/img/office.svg" alt="Office reception counter" loading="lazy" width="400" height="300">
-              <figcaption><strong>Reception Counter</strong><span>Commercial fit-out</span></figcaption></figure>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section id="process" class="section section-dark">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">How it works</p>
-          <h2>From idea to installation</h2>
-        </div>
+    <!-- ============ PROCESS ============ -->
+    <section class="process" id="process">
+      <div class="wrap">
+        <p class="label sec-label">How a commission works</p>
         <ol class="steps">
-          <li class="reveal">
-            <span class="step-num">01</span>
-            <h3>Consult</h3>
-            <p>Tell us what you need. We discuss your space, style, budget and timeline — in person, by phone or on WhatsApp.</p>
-          </li>
-          <li class="reveal">
-            <span class="step-num">02</span>
-            <h3>Design &amp; Quote</h3>
-            <p>We take measurements, prepare drawings and recommend materials and finishes, then give you a clear quote.</p>
-          </li>
-          <li class="reveal">
-            <span class="step-num">03</span>
-            <h3>Craft</h3>
-            <p>Your piece is built in our workshop by skilled hands, with progress updates along the way.</p>
-          </li>
-          <li class="reveal">
-            <span class="step-num">04</span>
-            <h3>Deliver &amp; Install</h3>
-            <p>We deliver, assemble and install — and make sure everything is exactly right before we leave.</p>
-          </li>
+          <li><span class="step-n">I</span><h3>Talk</h3><p>Tell us what you need — a sketch, a photo, a measurement. In person, by phone or on WhatsApp.</p></li>
+          <li><span class="step-n">II</span><h3>Draw &amp; quote</h3><p>We measure up, draw the piece, bring timber samples and give you a clear quote and timeline.</p></li>
+          <li><span class="step-n">III</span><h3>Build</h3><p>Boards are selected, jointed and finished in our workshop, with progress photos as it comes together.</p></li>
+          <li><span class="step-n">IV</span><h3>Install</h3><p>We deliver, assemble and fit — and don't leave until it is exactly right.</p></li>
         </ol>
       </div>
     </section>
 
-    <!-- MATERIALS -->
-    <section class="section">
-      <div class="container split">
-        <div class="reveal">
-          <p class="eyebrow">Materials &amp; finishes</p>
-          <h2>The right wood for every piece.</h2>
-          <p>We work with a range of hardwoods, veneers and boards, matched to how each piece will be used. Finishes range from natural oils to lacquers and stains, with hardware in brass, black and brushed steel.</p>
-        </div>
-        <ul class="swatches reveal" aria-label="Wood options">
-          <li><span class="swatch" style="--c1:#5a3a22;--c2:#7a5032"></span>Walnut</li>
-          <li><span class="swatch" style="--c1:#b07a48;--c2:#c99566"></span>Oak</li>
-          <li><span class="swatch" style="--c1:#8a4a2a;--c2:#a65c36"></span>Mahogany</li>
-          <li><span class="swatch" style="--c1:#7c5a2e;--c2:#9a7440"></span>Teak</li>
-          <li><span class="swatch" style="--c1:#d8b98a;--c2:#e8cfa6"></span>Ash</li>
-          <li><span class="swatch" style="--c1:#2b211b;--c2:#3e3029"></span>Ebonised</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- CTA BAND -->
-    <section class="cta-band">
-      <div class="container cta-inner reveal">
-        <h2>Have a piece in mind?</h2>
-        <p>Send us a sketch, a photo or just an idea — we'll take it from there.</p>
-        <a href="#contact" class="btn btn-light">Request a quote</a>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section">
-      <div class="container contact-grid">
-        <div class="reveal">
-          <p class="eyebrow">Get in touch</p>
-          <h2>Let's build something together.</h2>
-          <p>Fill in the form and it will open a pre-written message in your email or WhatsApp — or reach us directly:</p>
+    <!-- ============ CONTACT ============ -->
+    <section class="contact" id="contact">
+      <div class="wrap contact-grid">
+        <div>
+          <p class="label sec-label">05 — Commission</p>
+          <h2 class="display contact-title">Let's make<br>something that<br><em>outlives us.</em></h2>
           <ul class="contact-list">
-            <li>
-              <span class="label">Phone / WhatsApp</span>
-              <a href="tel:+0000000000000" data-contact="phone">+000 000 000 0000</a>
-            </li>
-            <li>
-              <span class="label">Email</span>
-              <a href="mailto:hello@lux96furnitures.com" data-contact="email">hello@lux96furnitures.com</a>
-            </li>
-            <li>
-              <span class="label">Workshop</span>
-              <span>Your workshop address, City, Country</span>
-            </li>
-            <li>
-              <span class="label">Hours</span>
-              <span>Mon – Sat, 8:00 – 18:00</span>
-            </li>
+            <li><span class="label">Phone / WhatsApp</span><a href="tel:+0000000000000" class="c-phone">+000 000 000 0000</a></li>
+            <li><span class="label">Email</span><a href="mailto:hello@lux96furnitures.com" class="c-email">hello@lux96furnitures.com</a></li>
+            <li><span class="label">Workshop</span><span>Workshop address, City, Country</span></li>
+            <li><span class="label">Hours</span><span>Mon – Sat · 08:00 – 18:00</span></li>
           </ul>
           <div class="socials">
-            <a href="https://instagram.com/" aria-label="Instagram" rel="noopener" target="_blank">
-              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8"/></svg>
-            </a>
-            <a href="https://facebook.com/" aria-label="Facebook" rel="noopener" target="_blank">
-              <svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg>
-            </a>
-            <a href="https://wa.me/0000000000000" aria-label="WhatsApp" rel="noopener" target="_blank" data-contact="whatsapp">
-              <svg viewBox="0 0 24 24"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9c0 3 3 6 6 6l1-1.5-2-1-1 1c-1-.5-2-1.5-2.5-2.5l1-1-1-2z"/></svg>
-            </a>
+            <a href="https://instagram.com/" target="_blank" rel="noopener" data-cursor="Open">Instagram ↗</a>
+            <a href="https://facebook.com/" target="_blank" rel="noopener" data-cursor="Open">Facebook ↗</a>
+            <a href="https://wa.me/0000000000000" class="c-wa" target="_blank" rel="noopener" data-cursor="Open">WhatsApp ↗</a>
           </div>
         </div>
-
-        <form class="quote-form reveal" id="quote-form" novalidate>
-          <div class="field">
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" autocomplete="name" required>
+        <form class="quote" id="quote" novalidate>
+          <div class="f"><input id="q-name" name="name" placeholder=" " autocomplete="name" required><label for="q-name">Your name</label></div>
+          <div class="f2">
+            <div class="f"><input id="q-phone" name="phone" type="tel" placeholder=" " autocomplete="tel"><label for="q-phone">Phone</label></div>
+            <div class="f"><input id="q-email" name="email" type="email" placeholder=" " autocomplete="email"><label for="q-email">Email</label></div>
           </div>
-          <div class="field-row">
-            <div class="field">
-              <label for="phone">Phone</label>
-              <input id="phone" name="phone" type="tel" autocomplete="tel">
-            </div>
-            <div class="field">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" autocomplete="email">
-            </div>
-          </div>
-          <div class="field">
-            <label for="project">Project type</label>
-            <select id="project" name="project">
-              <option>Custom furniture</option>
-              <option>Wardrobe / Kitchen</option>
-              <option>Doors &amp; interior woodwork</option>
-              <option>Commercial fit-out</option>
-              <option>Restoration / refinishing</option>
-              <option>Something else</option>
+          <div class="f">
+            <select id="q-type" name="project">
+              <option>Custom furniture</option><option>Wardrobe / kitchen</option><option>Doors &amp; panelling</option>
+              <option>Commercial fit-out</option><option>Restoration</option><option>Something else</option>
             </select>
+            <label for="q-type" class="fixed">Project</label>
           </div>
-          <div class="field">
-            <label for="message">Tell us about your project</label>
-            <textarea id="message" name="message" rows="5" required placeholder="What would you like made? Rough sizes, wood preference, timeline…"></textarea>
-          </div>
-          <p class="form-error" role="alert" hidden></p>
-          <div class="form-actions">
-            <button type="submit" class="btn" data-via="whatsapp">Send via WhatsApp</button>
-            <button type="submit" class="btn btn-ghost" data-via="email">Send via Email</button>
+          <div class="f"><textarea id="q-msg" name="message" rows="4" placeholder=" " required></textarea><label for="q-msg">What would you like made?</label></div>
+          <p class="q-err" role="alert" hidden></p>
+          <div class="q-actions">
+            <button class="btn btn-brass" type="submit" data-via="whatsapp" data-cursor="Send">Send via WhatsApp</button>
+            <button class="btn btn-line" type="submit" data-via="email" data-cursor="Send">Send via email</button>
           </div>
         </form>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <a class="brand brand-light" href="#top">
-          <img src="/assets/img/logo.svg" alt="" width="36" height="36">
-          <span>LUX96 <small>Furnitures</small></span>
-        </a>
-        <p>Handcrafted furniture and interior woodwork, made to order.</p>
-      </div>
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="wrap footer-top">
+      <p>Bespoke furniture &amp; joinery, built from the grain up.</p>
       <nav aria-label="Footer">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#work">Our Work</a>
-        <a href="#process">Process</a>
-        <a href="#contact">Contact</a>
+        <a href="#studio">Studio</a><a href="#work">Work</a><a href="#timber">Timber</a><a href="#build">Build</a><a href="#contact">Contact</a>
       </nav>
     </div>
-    <div class="container footer-bottom">
-      <p>&copy; <span id="year">2026</span> LUX96 Furnitures. All rights reserved.</p>
+    <div class="footer-word" aria-hidden="true">LUX96</div>
+    <div class="wrap footer-bot">
+      <span>© <span class="year">2026</span> LUX96 Furnitures</span>
       <a href="#top">Back to top ↑</a>
     </div>
   </footer>
 
-  <script src="/assets/js/main.js" defer></script>
+  <script src="assets/js/wood.js"></script>
+  <script src="assets/js/render.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

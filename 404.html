@@ -3,30 +3,43 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Page not found — LUX96 Furnitures</title>
+  <title>Not found — LUX96 Furnitures</title>
   <meta name="robots" content="noindex">
-  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <!-- Self-contained on purpose: this page can be served from any URL depth. -->
+  <style>
+    *{box-sizing:border-box;margin:0}
+    body{min-height:100vh;display:grid;place-items:center;background:#120e0b;color:#efe7da;font-family:Manrope,system-ui,sans-serif;text-align:center;padding:24px;overflow:hidden}
+    .rings{position:fixed;inset:0;margin:auto;width:min(120vmin,1000px);aspect-ratio:1;opacity:.35}
+    .rings ellipse{fill:none;stroke:#c8a165;stroke-width:.35}
+    main{position:relative}
+    p.l{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#c8a165}
+    h1{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(56px,11vw,150px);line-height:.95;margin:18px 0}
+    h1 em{color:#e6c58a}
+    p.s{color:#b9ad9c;max-width:28em;margin:0 auto 32px}
+    a{display:inline-block;padding:15px 28px;border-radius:999px;background:#c8a165;color:#120e0b;text-decoration:none;font-weight:500}
+    a:hover{background:#efe7da}
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="/" aria-label="LUX96 Furnitures home">
-        <img src="/assets/img/logo.svg" alt="" width="40" height="40">
-        <span>LUX96 <small>Furnitures</small></span>
-      </a>
-    </div>
-  </header>
-  <main class="notfound">
-    <div>
-      <p class="big">404</p>
-      <h1>This piece isn't in our workshop.</h1>
-      <p>The page you're looking for doesn't exist or has moved.</p>
-      <a href="/" class="btn">Back to home</a>
-    </div>
+  <svg class="rings" viewBox="0 0 200 200" aria-hidden="true">
+    <ellipse cx="100" cy="100" rx="10" ry="9"/><ellipse cx="99" cy="101" rx="22" ry="20"/><ellipse cx="98.5" cy="101.5" rx="35" ry="32"/>
+    <ellipse cx="98" cy="102" rx="49" ry="45"/><ellipse cx="97.5" cy="102.5" rx="64" ry="59"/><ellipse cx="97" cy="103" rx="80" ry="74"/><ellipse cx="96.5" cy="103.5" rx="97" ry="90"/>
+  </svg>
+  <main>
+    <p class="l">Error 404</p>
+    <h1>This board<br><em>isn't in the rack.</em></h1>
+    <p class="s">The page you were looking for doesn't exist or has moved.</p>
+    <a id="home" href="/">Back to the workshop</a>
   </main>
+  <script>
+    // On GitHub Pages project sites the home page lives under /<repo>/
+    if (location.hostname.endsWith("github.io")) {
+      var seg = location.pathname.split("/")[1];
+      document.getElementById("home").href = seg ? "/" + seg + "/" : "/";
+    }
+  </script>
 </body>
 </html>
