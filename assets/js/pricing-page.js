@@ -2,7 +2,8 @@
    LUX96 — pricing page: price tag, price guide, breakdown,
    estimator, project tray and checkout → personalised invoice
    ========================================================== */
-(function () {
+// Runs once the 00→96 count has finished, so the counter always gets the device to itself.
+window.LUX.afterCount(function () {
   const L = window.LUX, X = window.LuxPrice, P = X.P;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -339,4 +340,4 @@
   });
   renderTray();
   if (q.get("type")) setTimeout(() => $("#estimator").scrollIntoView({ behavior: "auto" }), 50);
-})();
+});

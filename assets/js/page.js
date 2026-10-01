@@ -1,7 +1,8 @@
 /* ==========================================================
    LUX96 — behaviour for piece, service and care pages
    ========================================================== */
-(function () {
+// Runs once the 00→96 count has finished, so the counter always gets the device to itself.
+window.LUX.afterCount(function () {
   const L = window.LUX;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -70,4 +71,4 @@
       if (main) Render.piece(main, main.dataset.piece, main.dataset.species);
     }, 200);
   });
-})();
+});
