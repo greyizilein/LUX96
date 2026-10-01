@@ -276,9 +276,6 @@
     const ctx = setup(canvas);
     const W = canvas.width, H = canvas.height;
     ctx.fillStyle = "#16110d"; ctx.fillRect(0, 0, W, H);
-    // floor boards hint
-    ctx.strokeStyle = "rgba(255,235,210,.035)"; ctx.lineWidth = 1;
-    for (let y = 0; y < H; y += H / 9) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
 
     const L = cfg.shape === "round" ? cfg.width : cfg.length, Wd = cfg.width;
     const s = Math.min((W * 0.62) / (L + 110), (H * 0.62) / (Wd + 110)) * 1.25;
