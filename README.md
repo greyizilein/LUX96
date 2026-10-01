@@ -31,6 +31,9 @@ spec to WhatsApp), the commission process, and contact.
 | Home | `index.html` | Hand-written. Its header, menu and footer (between the `<!-- chrome:… -->` markers) are reused by every generated page. |
 | Pieces | `pieces/*.html` | One page per catalogue piece, with a live render you can switch between timbers. |
 | Services | `services/*.html` | One page per service, with a live lit wood slab behind the title. |
+| Ideas board | `ideas.html` | Furniture inspiration from around the web; each picture opens WhatsApp asking for one like it. Source: `tools/pages/ideas.main.html`. |
+| FAQ | `faq.html` | Questions and how a commission works, with FAQ data for search engines. Source: `tools/pages/faq.main.html`. |
+| Delivery | `delivery.html` | The "Where we deliver" map. Source: `tools/pages/delivery.main.html`. |
 | Care guide | `care.html` | Everyday care, care by finish, Harmattan and rainy-season advice, small fixes. |
 | Pricing | `pricing/index.html` | Price guide, cost breakdown, the estimator, project tray and checkout. |
 | Invoice | `pricing/invoice.html` | A personalised invoice, carried entirely inside its link (`#i=…`). |
@@ -44,6 +47,10 @@ node tools/build-pages.mjs
 ```
 
 That needs Node 18+ and nothing else. Commit the generated files: the site itself still has no build step.
+
+**Run it after any CSS or JS change too.** It stamps every page (home included) with
+`main.css?v=<hash>` / `file.js?v=<hash>`, so phones and the CDN always fetch the new file instead of a cached
+old one. Without this, a visitor can see a new page with an old stylesheet.
 
 ## Settings (`assets/js/config.js`)
 

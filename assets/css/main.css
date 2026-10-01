@@ -1357,34 +1357,61 @@ a.piece { display: block; color: inherit; }
 }
 
 /* ==========================================================
-   Ideas board: a masonry of inspiration pictures (phone first)
+   Ideas board: picture cards shaped like the film reels (phone first)
    ========================================================== */
 .ideas { padding: clamp(72px, 10vw, 150px) 0; }
-.ideas-head { display: grid; gap: 14px; margin-bottom: 32px; max-width: 40em; }
+.ideas-head { display: grid; gap: 14px; margin-bottom: 28px; max-width: 40em; }
 .ideas-head .display { margin: 0; font-size: clamp(40px, 4.6vw, 72px); }
 .ideas-sub { color: var(--bone-dim); font-size: 15px; }
-.ideas-grid { columns: 2; column-gap: 12px; }
-.idea { position: relative; display: block; margin: 0 0 12px; break-inside: avoid; border-radius: 16px; overflow: hidden; background: #1a1511; color: #efe7da;
-  -webkit-tap-highlight-color: transparent; transform: translateZ(0); }
-.idea img { display: block; width: 100%; height: auto; transition: transform 1.2s var(--ease); }
-/* phones: caption sits under the picture so the photo stays clear */
-.idea-cap { display: grid; gap: 2px; padding: 10px 12px 12px; }
-.idea-cap b { font-family: var(--serif); font-weight: 400; font-size: 17px; line-height: 1.15; }
-.idea-cap > span { font-size: 12px; line-height: 1.35; color: rgba(239, 231, 218, .72); }
-.idea-cap i { font-style: normal; color: #e6c58a; margin-top: 6px; font-size: 10px; }
+/* phones: a swipeable row, the next card peeking in, just like the films */
+.ideas-grid {
+  display: grid; grid-auto-flow: column; grid-auto-columns: min(74vw, 320px); gap: 14px;
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none;
+  margin: 0 calc(-1 * var(--pad)); padding: 4px var(--pad) 12px; scroll-padding: 0 var(--pad);
+}
+.ideas-grid::-webkit-scrollbar { display: none; }
+.idea { position: relative; display: block; margin: 0; scroll-snap-align: start; border-radius: 18px; overflow: hidden; background: #1a1511; color: #efe7da;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .3); -webkit-tap-highlight-color: transparent; transform: translateZ(0); }
+.idea img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; max-height: 70svh; object-fit: cover; transition: transform 1.2s var(--ease); }
+.idea::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+  background: linear-gradient(to top, rgba(14, 10, 8, .85), rgba(14, 10, 8, 0) 45%); box-shadow: inset 0 0 0 1px rgba(239, 231, 218, .08); }
+.idea-cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; display: grid; gap: 2px; padding: 16px; }
+.idea-cap b { font-family: var(--serif); font-weight: 400; font-size: 22px; line-height: 1.15; }
+.idea-cap > span { font-size: 13px; line-height: 1.35; color: rgba(239, 231, 218, .78); }
+.idea-cap i { font-style: normal; color: #e6c58a; margin-top: 8px; font-size: 11px; }
 .idea:active img { transform: scale(1.03); }
-@media (hover: hover) {
-  .idea:hover img { transform: scale(1.05); }
-  .idea-cap i { opacity: 0; translate: 0 6px; transition: opacity .4s, translate .4s var(--ease); }
-  .idea:hover .idea-cap i, .idea:focus-visible .idea-cap i { opacity: 1; translate: 0 0; }
-}
+.ideas-hint { margin-top: 6px; font-size: 12px; color: var(--mute); }
+@media (hover: hover) { .idea:hover img { transform: scale(1.05); } }
+/* larger screens: a tidy grid of same-shaped cards */
 @media (min-width: 760px) {
-  .ideas-grid { columns: 3; column-gap: 18px; }
-  .idea { margin-bottom: 18px; border-radius: 18px; }
-  .idea::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
-    background: linear-gradient(to top, rgba(14, 10, 8, .8), rgba(14, 10, 8, 0) 45%); }
-  .idea-cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 18px; }
-  .idea-cap b { font-size: 22px; }
-  .idea-cap > span { font-size: 13px; }
+  .ideas-grid { grid-auto-flow: row; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-columns: auto; gap: 18px;
+    overflow: visible; margin: 0; padding: 0; }
+  .idea img { max-height: none; }
+  .idea-cap { padding: 20px; }
+  .idea-cap b { font-size: 24px; }
+  .ideas-hint { display: none; }
 }
-@media (pointer: coarse) { .idea-cap i { font-size: 11px; } }
+
+/* ==========================================================
+   Stand-alone pages (ideas board, FAQ, delivery) & home "Explore"
+   ========================================================== */
+.x-page main > section:first-child { padding-top: clamp(118px, 14vw, 170px); }
+.x-page .crumbs { margin-bottom: 20px; }
+
+.explore { padding: clamp(64px, 8vw, 120px) 0 0; }
+.explore-grid { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 22px; }
+.explore-grid li:first-child { grid-column: 1 / -1; }
+.explore-grid a { position: relative; display: grid; gap: 4px; align-content: start; height: 100%; padding: 16px 16px 18px; border-radius: 16px;
+  background: rgba(var(--ink-rgb), .05); transition: background .3s, transform .5s var(--ease); -webkit-tap-highlight-color: transparent; }
+.explore-grid a::after { content: "→"; position: absolute; right: 14px; top: 13px; color: var(--brass); transition: translate .4s var(--ease); }
+.explore-grid .label { color: var(--brass); }
+.explore-grid b { font-family: var(--serif); font-weight: 400; font-size: 21px; line-height: 1.15; }
+.explore-grid a > span:last-child { font-size: 13px; color: var(--bone-dim); }
+.explore-grid a:active { transform: scale(.98); }
+@media (hover: hover) { .explore-grid a:hover { background: rgba(var(--ink-rgb), .09); } .explore-grid a:hover::after { translate: 4px 0; } }
+@media (min-width: 760px) {
+  .explore-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+  .explore-grid li:first-child { grid-column: auto; }
+  .explore-grid a { padding: 20px 20px 22px; }
+  .explore-grid b { font-size: 24px; }
+}
