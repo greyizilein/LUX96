@@ -98,8 +98,8 @@ pieces.forEach((p, i) => {
           <p class="label sec-label">No. ${p.no} — Catalogue</p>
           <h1 class="display p-title">${p.title}</h1>
           <p class="p-lede">${p.lede}</p>
-          <div class="p-actions">
-            <a class="btn btn-brass c-wa" data-msg="${esc(msg)}" href="https://wa.me/${"2348167993933"}" target="_blank" rel="noopener" data-cursor="Ask">Enquire on WhatsApp</a>
+          <div class="p-actions btn-row">
+            <a class="btn btn-brass c-wa" data-msg="${esc(msg)}" href="https://wa.me/${"2348167993933"}" target="_blank" rel="noopener" data-cursor="Ask">Enquire<span class="lbl-x"> on WhatsApp</span></a>
             <a class="btn btn-line" href="${root}pricing/?type=${PRICE_TYPE[p.kind]}&species=${p.species}" data-cursor="Price">Get a price</a>
           </div>
         </div>
@@ -172,8 +172,8 @@ services.forEach((s, i) => {
         <p class="label sec-label">Service ${s.no}</p>
         <h1 class="display s-title">${s.title}</h1>
         <p class="s-lede">${s.lede}</p>
-        <div class="p-actions">
-          <a class="btn btn-brass c-wa" data-msg="${esc(msg)}" href="https://wa.me/2348167993933" target="_blank" rel="noopener" data-cursor="Ask">Start on WhatsApp</a>
+        <div class="p-actions btn-row">
+          <a class="btn btn-brass c-wa" data-msg="${esc(msg)}" href="https://wa.me/2348167993933" target="_blank" rel="noopener" data-cursor="Ask"><span class="lbl-x">Start on </span>WhatsApp</a>
           <a class="btn btn-line" href="${root}pricing/" data-cursor="Price">See pricing</a>
         </div>
       </div>

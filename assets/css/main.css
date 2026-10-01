@@ -1239,3 +1239,21 @@ a.piece { display: block; color: inherit; }
   .inv-items tbody tr { animation: none !important; }
 }
 .invoice-page .wa-fab { display: none; }
+
+/* ==========================================================
+   Button groups: always one row, never stacked.
+   On small screens buttons get compact and labels shorten
+   (.lbl-x = extra words hidden on phones, .lbl-s = phone-only label).
+   ========================================================== */
+.btn-row { display: flex; flex-wrap: nowrap !important; flex-direction: row !important; gap: 10px; align-items: center; }
+.btn-row > .btn { flex: 0 1 auto; min-width: 0; white-space: nowrap; }
+.cfg-actions > .btn { flex: 1 1 0; }
+.inv-actions.btn-row { justify-content: center; }
+.lbl-s { display: none; }
+@media (max-width: 560px) {
+  .lbl-x { display: none; }
+  .lbl-s { display: inline; }
+  .btn-row { gap: 8px; }
+  .btn-row > .btn { padding: 12px 16px; font-size: 13px; gap: 6px; }
+  .btn-row > .btn.btn-sm { padding: 10px 14px; }
+}
