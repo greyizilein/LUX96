@@ -4,7 +4,7 @@
    nothing needs bumping. (Changing VERSION simply clears old saved copies.) */
 const VERSION = "lux96-v2";
 const CORE = [
-  "./", "./index.html", "./care.html", "./offline.html", "./manifest.webmanifest",
+  "./", "./index.html", "./care.html", "./ideas.html", "./faq.html", "./delivery.html", "./offline.html", "./manifest.webmanifest",
   "./assets/css/main.css",
   "./assets/js/config.js", "./assets/js/wood.js", "./assets/js/render.js", "./assets/js/common.js",
   "./assets/js/main.js", "./assets/js/alive.js", "./assets/js/page.js",
@@ -34,7 +34,7 @@ self.addEventListener("fetch", (e) => {
       fetch(req).then((res) => {
         if (res && res.ok) { const copy = res.clone(); caches.open(VERSION).then((c) => c.put(req, copy)); }
         return res;
-      }).catch(() => caches.match(req, { ignoreSearch: req.mode === "navigate" }).then((r) => r || (req.mode === "navigate" ? caches.match("./offline.html") : Response.error())))
+      }).catch(() => caches.match(req, { ignoreSearch: true }).then((r) => r || (req.mode === "navigate" ? caches.match("./offline.html") : Response.error())))
     );
     return;
   }

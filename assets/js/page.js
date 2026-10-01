@@ -10,7 +10,7 @@ window.LUX.afterCount(function () {
 
   /* reveal on scroll (same classes the home page uses, so alive.js word reveals work too) */
   const rvIO = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); rvIO.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
-  $$(".sec-label, .display, .specs > div, .p-about, .p-options, .steps li, .mini, .c-item, .s-makes li, .s-other-list li, .pay-steps li, .est-head, .tray")
+  $$(".sec-label, .display, .specs > div, .p-about, .p-options, .steps li, .mini, .c-item, .s-makes li, .s-other-list li, .pay-steps li, .est-head, .tray, .faq-list details, .idea, .ideas-sub, .ng-map, .delivery-sub")
     .forEach((el) => { el.classList.add("rv"); rvIO.observe(el); });
 
   /* furniture renders (big one first, minis when they come into view) */

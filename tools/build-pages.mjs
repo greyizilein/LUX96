@@ -5,7 +5,8 @@
 //   node tools/build-pages.mjs
 //
 // No dependencies; the output is plain HTML committed to the repo.
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, readdirSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { pieces, services, films } from "./content.mjs";
@@ -25,7 +26,7 @@ function chrome(html, root) {
   return html
     .replace(/class="nav-logo" href="#top"/g, `class="nav-logo" href="${root}"`)
     .replace(/href="#(?!top"|main")([^"]*)"/g, `href="${root}#$1"`)
-    .replace(/(href|src)="(assets\/|services\/|pieces\/|pricing\/|care\.html)/g, `$1="${root}$2`);
+    .replace(/(href|src)="(assets\/|services\/|pieces\/|pricing\/|care\.html|ideas\.html|faq\.html|delivery\.html)/g, `$1="${root}$2`);
 }
 
 const esc = (s) => s.replace(/&(?!amp;|lt;|gt;|quot;)/g, "&amp;");
@@ -309,6 +310,37 @@ ${sections.map(([id, h, items], k) => `
   }));
 }
 
+/* ---------------- ideas board, FAQ, delivery ---------------- */
+{
+  const root = "./";
+  const frag = (name) => readFileSync(join(ROOT, "tools", "pages", name), "utf8");
+  const faqMain = frag("faq.main.html");
+  const text = (h) => h.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim().replace(/&amp;/g, "&");
+  const faqLd = {
+    "@context": "https://schema.org", "@type": "FAQPage",
+    mainEntity: [...faqMain.matchAll(/<summary>([\s\S]*?)<\/summary><div>([\s\S]*?)<\/div><\/details>/g)]
+      .map(([, q, a]) => ({ "@type": "Question", name: text(q), acceptedAnswer: { "@type": "Answer", text: text(a) } })),
+  };
+  const extra = [
+    { file: "ideas.html", name: "Ideas board", main: "ideas.main.html", bodyClass: "x-page ideas-page",
+      title: "The ideas board — LUX96 Furnitures",
+      description: "Furniture ideas we'd love to make: sculpted chairs, hanging daybeds, leaf tables and more. Send us one, or your own picture, and we'll draw a version for your room." },
+    { file: "faq.html", name: "FAQ", main: "faq.main.html", bodyClass: "x-page faq-page", ld: [faqLd],
+      title: "Questions & answers — LUX96 Furnitures",
+      description: "How long a commission takes, how payments work, sizes, timber and finishes, delivery, installation and our 10-year joinery guarantee." },
+    { file: "delivery.html", name: "Delivery", main: "delivery.main.html", bodyClass: "x-page delivery-page",
+      scripts: ["config", "wood", "render", "common", "nigeria-map", "delivery", "page", "alive"],
+      title: "Where we deliver — LUX96 Furnitures",
+      description: "Check whether LUX96 delivers and installs in your state. Every piece is wrapped, blanketed and carried by our own team or a trusted carrier." },
+  ];
+  extra.forEach((x) => writeFileSync(join(ROOT, x.file), page({
+    root, title: x.title, description: x.description, bodyClass: x.bodyClass,
+    main: frag(x.main).replace("{{CRUMBS}}", crumbs(root, [[x.name]])),
+    ld: [...(x.ld || []), crumbLd(["Home", x.name])],
+    ...(x.scripts ? { scripts: x.scripts } : {}),
+  })));
+}
+
 /* ---------------- pricing & invoice ---------------- */
 {
   const root = "../";
@@ -331,4 +363,22 @@ ${sections.map(([id, h, items], k) => `
   }));
 }
 
-console.log(`Built ${pieces.length} piece pages, ${services.length} service pages, care.html and the pricing pages`);
+console.log(`Built ${pieces.length} piece pages, ${services.length} service pages, care.html, the ideas, FAQ and delivery pages, and the pricing pages`);
+
+/* ---------------- cache-busting ----------------
+   Every page links its CSS and JS as file.css?v=<content hash>, so a phone (or a CDN) never keeps an
+   old stylesheet next to a new page. Runs over every HTML file, index.html included. */
+{
+  const hashes = {};
+  const version = (rel) => (hashes[rel] ??= createHash("sha1").update(readFileSync(join(ROOT, rel))).digest("hex").slice(0, 8));
+  const htmlFiles = ["", "pieces", "services", "pricing"].flatMap((d) =>
+    readdirSync(join(ROOT, d)).filter((f) => f.endsWith(".html")).map((f) => join(d, f)));
+  let n = 0;
+  htmlFiles.forEach((f) => {
+    const path = join(ROOT, f), html = readFileSync(path, "utf8");
+    const out = html.replace(/((?:href|src)="(?:\.\.?\/)*)(assets\/(?:css|js|vendor)\/[\w.-]+\.(?:css|js))(?:\?v=[0-9a-f]+)?"/g,
+      (_, pre, rel) => `${pre}${rel}?v=${version(rel)}"`);
+    if (out !== html) { writeFileSync(path, out); n++; }
+  });
+  console.log(`Stamped asset versions in ${n} pages`);
+}

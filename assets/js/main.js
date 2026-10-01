@@ -54,7 +54,7 @@ window.LUX.afterCount(function () {
 
   /* ---------------- Reveal ---------------- */
   const rvIO = io((el) => el.classList.add("in"), { rootMargin: "0px 0px -8% 0px" });
-  $$(".sec-label, .display:not(.hero-title), .svc, .steps li, .fact, .species-card, .timber-specimen, .build-views, .build-ctrl, .quote, .contact-list, .work-note, .joints li, .care-tips li, .faq-list details, .ng-map, .greet-pick, .idea, .ideas-sub")
+  $$(".sec-label, .display:not(.hero-title), .svc, .steps li, .fact, .species-card, .timber-specimen, .build-views, .build-ctrl, .quote, .contact-list, .work-note, .joints li, .care-tips li, .faq-list details, .ng-map, .greet-pick, .explore-grid li")
     .forEach((el) => { el.classList.add("rv"); rvIO.observe(el); });
 
   /* ---------------- Rings ---------------- */
@@ -314,16 +314,6 @@ window.LUX.afterCount(function () {
     fw.classList.add("textured");
   }, { rootMargin: "400px" });
   fwIO.observe(fw.closest("footer"));
-
-  /* ---------------- FAQ structured data (built from the visible answers) ---------------- */
-  const faqLd = $("#faq-ld");
-  if (faqLd) faqLd.textContent = JSON.stringify({
-    "@context": "https://schema.org", "@type": "FAQPage",
-    mainEntity: $$(".faq details").map((d) => ({
-      "@type": "Question", name: $("summary", d).textContent.trim(),
-      acceptedAnswer: { "@type": "Answer", text: $("div", d).textContent.trim().replace(/\s+/g, " ") },
-    })),
-  });
 
   /* ---------------- Scroll loop ---------------- */
   let ticking = false;
