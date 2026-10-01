@@ -54,6 +54,7 @@ Business details and terms live in one file. Values marked **CONFIRM** are sensi
 | `whatsapp`, `email` | Every WhatsApp and email link. Never displayed on the page. |
 | `leadTime`, `depositPercent`, `guaranteeYears` | FAQ answers, piece specs, the guarantee seal and the footer |
 | `deliveryStates`, `installStates` | The delivery map: `"all"` or a list of state ids |
+| `hours` | Workshop opening days and hours (Lagos time) for the live "open / closed" clock on the opening screen |
 | `greetings` | The rotating welcome on the opening screen, and the greeting at the start of WhatsApp messages (English, Yorùbá, Igbo, Hausa) |
 
 ## Pricing & invoices (`assets/js/pricing-data.js`)
@@ -97,6 +98,31 @@ repo. Set the framework preset to **None**, leave the build command **empty**, a
 output directory to **`/`**. `_headers` adds security and caching headers.
 
 **GitHub Pages:** go to Settings → Pages → Deploy from branch → `main` / root.
+
+## Videos
+
+Short clips live in `assets/video/`. Each one has three files: `name.mp4` (H.264), `name.webm`
+(fallback) and `name.jpg` (the still shown before it plays). Use them anywhere as:
+
+```html
+<video class="reel-video" muted loop playsinline preload="none"
+       poster="assets/video/name.jpg" data-src="assets/video/name"></video>
+```
+
+`common.js` loads a clip only when it nears the screen, plays it muted while it's visible, and
+pauses it otherwise. Visitors with reduced motion or data saver only see the still.
+Service-page films are listed in `films` in `tools/content.mjs`.
+
+To add a clip, compress it to 540×960 with no sound, for example:
+
+```sh
+ffmpeg -i in.mp4 -an -vf scale=540:960 -c:v libx264 -crf 28 -preset slow -movflags +faststart name.mp4
+ffmpeg -i name.mp4 -c:v libvpx-vp9 -b:v 0 -crf 40 name.webm
+ffmpeg -i name.mp4 -frames:v 1 name.jpg
+```
+
+Captions say where a clip comes from: "Concept" for the AI-generated riverstone clip, and a film credit for
+clips by other makers. Replace these with the workshop's own footage when you have it.
 
 ## Before launch: replace the placeholders
 

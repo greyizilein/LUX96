@@ -25,6 +25,8 @@ self.addEventListener("fetch", (e) => {
   const req = e.request;
   if (req.method !== "GET") return;
   const url = new URL(req.url);
+  // Video streams in pieces (range requests) — leave it to the browser.
+  if (req.headers.has("range") || /\.(mp4|webm)$/.test(url.pathname)) return;
 
   // Same-origin pages and files: network first (always fresh), saved copy when offline.
   if (url.origin === location.origin) {

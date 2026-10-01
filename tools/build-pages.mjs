@@ -8,7 +8,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { pieces, services } from "./content.mjs";
+import { pieces, services, films } from "./content.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const index = readFileSync(join(ROOT, "index.html"), "utf8");
@@ -67,6 +67,26 @@ ${scripts.map((n) => `  <script src="${root}assets/${n.startsWith("vendor/") ? n
 </html>
 `;
 }
+
+// A swipeable row of muted, looping clips (played by common.js "Film reels")
+const filmsSection = (s, root) => `
+    <section class="resin s-films">
+      <div class="wrap resin-inner">
+        <div class="resin-copy">
+          <p class="label sec-label">On film</p>
+          <h2 class="display">From the <em>bench</em></h2>
+          <p class="resin-sub">Timber, stone and clear resin: the kind of piece we can draw and build for you.</p>
+        </div>
+        <div class="reels" tabindex="0" aria-label="Pieces on film — swipe for more">${s.films.map((k) => { const f = films[k]; return `
+          <figure class="reel">
+            <video class="reel-video" muted loop playsinline preload="none" poster="${root}assets/video/${k}.jpg" data-src="${root}assets/video/${k}" aria-label="${f.aria}"></video>
+            <figcaption><span class="label reel-tag"><i class="rec-dot" aria-hidden="true"></i>${f.tag}</span><b>${f.name}</b><span>${f.sub}</span></figcaption>
+          </figure>`; }).join("")}
+        </div>
+      </div>
+    </section>
+
+`;
 
 const crumbs = (root, items) =>
   `<nav class="crumbs label" aria-label="Breadcrumb"><a href="${root}">Home</a>${items.map(([t, h]) => h ? ` <span>/</span> <a href="${h}">${t}</a>` : ` <span>/</span> <b>${t}</b>`).join("")}</nav>`;
@@ -189,7 +209,7 @@ services.forEach((s, i) => {
       </div>
     </section>
 
-    <section class="s-steps">
+${s.films ? filmsSection(s, root) : ""}    <section class="s-steps">
       <div class="wrap">
         <p class="label sec-label">How it works</p>
         <ol class="steps">${s.steps.map(([h, t], k) => `<li><span class="step-n">${["I", "II", "III"][k]}</span><h3>${h}</h3><p>${t}</p></li>`).join("")}</ol>
