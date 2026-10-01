@@ -24,6 +24,45 @@ The hero (live walnut slab), the studio manifesto, the growth rings, the horizon
 services, the timber library, joinery, **Build a table** (a live configurator that sends the
 spec to WhatsApp), the commission process, and contact.
 
+## Pages
+
+| Page | File | Notes |
+|------|------|-------|
+| Home | `index.html` | Hand-written. Its header, menu and footer (between the `<!-- chrome:… -->` markers) are reused by every generated page. |
+| Pieces | `pieces/*.html` | One page per catalogue piece, with a live render you can switch between timbers. |
+| Services | `services/*.html` | One page per service, with a live lit wood slab behind the title. |
+| Care guide | `care.html` | Everyday care, care by finish, Harmattan and rainy-season advice, small fixes. |
+| Offline | `offline.html` | Shown by the service worker when there's no connection. |
+
+The piece, service and care pages are **generated**. Edit `tools/content.mjs` (or the header and footer in
+`index.html`), then run:
+
+```bash
+node tools/build-pages.mjs
+```
+
+That needs Node 18+ and nothing else. Commit the generated files: the site itself still has no build step.
+
+## Settings (`assets/js/config.js`)
+
+Business details and terms live in one file. Values marked **CONFIRM** are sensible defaults to check:
+
+| Setting | Used for |
+|---------|----------|
+| `whatsapp`, `email` | Every WhatsApp and email link. Never displayed on the page. |
+| `leadTime`, `depositPercent`, `guaranteeYears` | FAQ answers, piece specs, the guarantee seal and the footer |
+| `deliveryStates`, `installStates` | The delivery map: `"all"` or a list of state ids |
+| `greetings` | The rotating welcome on the opening screen, and the greeting at the start of WhatsApp messages (English, Yorùbá, Igbo, Hausa) |
+
+## Features
+
+- **Daylight theme:** a sun/moon toggle in the header. The choice is remembered.
+- **Sound:** synthesized woodshop sounds (a knock, a chisel tap, a plane stroke) on interactions. Off by default; a speaker toggle turns it on. No audio files.
+- **Page transitions:** a walnut-dark curtain slides between pages.
+- **Offline and install:** `manifest.webmanifest` and `sw.js` make the site installable ("Add to home screen") and usable offline once visited. **Bump `VERSION` in `sw.js` on each deploy** so returning visitors get fresh files.
+- **Delivery map:** the Nigeria state outlines come from [svg-maps](https://github.com/VictorCazanave/svg-maps) (based on MapSVG), CC BY 4.0. The credit is shown under the map.
+- **FAQ and structured data:** FAQPage, Product, Service, Article and Breadcrumb JSON-LD for search engines.
+
 ## Preview locally
 
 ```bash

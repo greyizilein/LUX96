@@ -49,12 +49,12 @@
     const href = b.getAttribute("href") || "";
     const a = document.createElement("span");
     a.className = "arr"; a.setAttribute("aria-hidden", "true");
-    a.textContent = href.startsWith("#") ? "→" : "↗";
+    a.textContent = /^(https?:|mailto:)/.test(href) && !href.includes(location.host) ? "↗" : "→";
     b.append(" ", a);
   });
 
   /* ---------- Tap ripple ---------- */
-  const rippleTargets = ".btn, .nav-cta, .seg span, .chips span, .species-tabs button, .socials a";
+  const rippleTargets = ".btn, .nav-cta, .seg span, .chips span, .species-tabs button, .socials a, .lang-pick button, .icon-btn";
   document.addEventListener("pointerdown", (e) => {
     const t = e.target.closest(rippleTargets);
     if (!t) return;
@@ -99,8 +99,10 @@
   };
   once(".piece", "seen", { rootMargin: "0px 0px -10% 0px" });
   // the wordmark starts fully clipped, so watch its footer instead of the word itself
-  const fio = new IntersectionObserver(([e]) => { if (e.isIntersecting) { $(".footer-word").classList.add("seen"); fio.disconnect(); } }, { threshold: 0.25 });
-  fio.observe($(".footer"));
+  if ($(".footer-word")) {
+    const fio = new IntersectionObserver(([e]) => { if (e.isIntersecting) { $(".footer-word").classList.add("seen"); fio.disconnect(); } }, { threshold: 0.25 });
+    fio.observe($(".footer"));
+  }
   once(".step-n", "seen", { threshold: 0.6 });
 
   /* ---------- Services: on touch, light the row in the middle of the screen ---------- */
@@ -113,7 +115,7 @@
   /* ---------- Catalogue: one-time "you can swipe this" nudge on touch ---------- */
   if (!fine) {
     const track = $(".work-track");
-    const io = new IntersectionObserver(([e]) => {
+    if (track) { const io = new IntersectionObserver(([e]) => {
       if (!e.isIntersecting) return;
       io.disconnect();
       setTimeout(() => {
@@ -122,7 +124,7 @@
         setTimeout(() => track.scrollTo({ left: 0, behavior: "smooth" }), 650);
       }, 500);
     }, { threshold: 0.6 });
-    io.observe(track);
+    io.observe(track); }
   }
 
   /* ---------- Scroll-linked motion: hero parallax + marquee velocity ---------- */
@@ -132,8 +134,8 @@
   let lastY = scrollY, vel = 0, raf = 0;
   function frame() {
     raf = 0;
-    const y = scrollY, h = hero.offsetHeight;
-    if (y < h * 1.2) {
+    const y = scrollY, h = hero ? hero.offsetHeight : 0;
+    if (hero && heroInner && y < h * 1.2) {
       const p = clamp(y / h, 0, 1);
       heroInner.style.transform = `translate3d(0, ${p * h * 0.28}px, 0)`;
       heroInner.style.opacity = String(1 - p * 1.15);
@@ -159,6 +161,27 @@
       $$(".view canvas").forEach(bump);
     });
   }
+
+  /* ---------- FAQ: answers open and close smoothly ---------- */
+  $$(".faq details").forEach((d) => {
+    const sum = $("summary", d), body = $("div", d);
+    sum.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (d.dataset.anim) return;
+      d.dataset.anim = "1";
+      const ease = "cubic-bezier(.2,.7,.1,1)";
+      if (d.open) {
+        d.classList.remove("is-open");
+        body.animate([{ height: `${body.offsetHeight}px`, opacity: 1 }, { height: "0px", opacity: 0 }], { duration: 380, easing: ease })
+          .onfinish = () => { d.open = false; delete d.dataset.anim; };
+      } else {
+        d.open = true; d.classList.add("is-open");
+        body.animate([{ height: "0px", opacity: 0 }, { height: `${body.offsetHeight}px`, opacity: 1 }], { duration: 480, easing: ease })
+          .onfinish = () => delete d.dataset.anim;
+      }
+    });
+    if (d.open) d.classList.add("is-open");
+  });
 
   /* ---------- Timber tabs: card content swaps with a soft rise ---------- */
   const tabs = $(".species-tabs");

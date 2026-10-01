@@ -1,13 +1,7 @@
 /* ==========================================================
-   LUX96 Furnitures — site behaviour
-   >>> Put the real business details here: <<<
+   LUX96 Furnitures — home page behaviour
+   (shared behaviour lives in common.js; settings in config.js)
    ========================================================== */
-// These details are only used inside links; they are never displayed on the page.
-const CONTACT = {
-  whatsapp: "2348167993933",          // international format, digits only (used for wa.me links)
-  email: "hello@lux96furnitures.com",
-};
-
 (function () {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -16,19 +10,14 @@ const CONTACT = {
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
   const isDesktop = () => innerWidth > 820;
-  const waLink = (text) => `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
-
-  // contact details from CONFIG
-  // Every general WhatsApp link opens a chat with a ready-to-send introduction.
-  const INTRO = "Hello LUX96 Furnitures! I found you through your website and I'm interested in having a piece made. Could you tell me how to get started, and what information you need from me for a quote?";
-  $$(".c-wa").forEach((a) => (a.href = waLink(INTRO)));
-  $$(".c-email").forEach((a) => (a.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent("Enquiry from the LUX96 website")}`));
-  $$(".year").forEach((el) => (el.textContent = new Date().getFullYear()));
+  const LUX = window.LUX;
+  const waLink = LUX.wa;
 
   /* ---------------- Loader ---------------- */
   const loader = $(".loader");
   const start = () => document.body.classList.add("ready");
-  if (loader && !reduced) {
+  let visited = false; try { visited = !!sessionStorage.getItem("lux-visited-home"); sessionStorage.setItem("lux-visited-home", "1"); } catch (e) {}
+  if (loader && !reduced && !visited) {
     const svg = $(".loader-rings", loader);
     const rings = [];
     for (let i = 1; i <= 12; i++) {
@@ -52,43 +41,6 @@ const CONTACT = {
     start();
   }
 
-  /* ---------------- Cursor ---------------- */
-  const cursor = $(".cursor");
-  let cx = -100, cy = -100, tx = -100, ty = -100;
-  if (finePointer && !reduced) {
-    addEventListener("pointermove", (e) => { tx = e.clientX; ty = e.clientY; cursor.classList.add("on"); }, { passive: true });
-    document.addEventListener("pointerleave", () => cursor.classList.remove("on"));
-    document.addEventListener("pointerover", (e) => {
-      const t = e.target.closest("[data-cursor]");
-      cursor.classList.toggle("big", !!t);
-      $(".cursor-label", cursor).textContent = t ? t.dataset.cursor : "";
-    });
-    (function loop() {
-      cx = lerp(cx, tx, 0.22); cy = lerp(cy, ty, 0.22);
-      cursor.style.transform = `translate(${cx}px, ${cy}px)`;
-      requestAnimationFrame(loop);
-    })();
-  } else cursor.remove();
-
-  /* ---------------- Nav ---------------- */
-  const nav = $(".nav"), burger = $(".nav-burger"), links = $("#nav-links"), menu = $("#menu");
-  let menuOpen = false;
-  const setMenu = (open) => {
-    if (open === menuOpen) return;
-    menuOpen = open;
-    burger.setAttribute("aria-expanded", String(open));
-    burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    menu.classList.toggle("open", open);
-    nav.classList.toggle("menu-open", open);
-    nav.classList.remove("hide");
-    document.body.classList.toggle("menu-lock", open);
-    document.documentElement.style.overflow = open ? "hidden" : "";
-    if (open) $("a", menu).focus({ preventScroll: true });
-  };
-  burger.addEventListener("click", () => setMenu(!menuOpen));
-  $$("a", menu).forEach((a) => a.addEventListener("click", () => setMenu(false)));
-  addEventListener("keydown", (e) => e.key === "Escape" && setMenu(false));
-  addEventListener("resize", () => innerWidth > 820 && setMenu(false));
   const sections = $$("#nav-links a").map((a) => [a, $(a.getAttribute("href"))]).filter(([, s]) => s);
 
   /* ---------------- Hero slab ---------------- */
@@ -128,7 +80,7 @@ const CONTACT = {
 
   /* ---------------- Reveal ---------------- */
   const rvIO = io((el) => el.classList.add("in"), { rootMargin: "0px 0px -8% 0px" });
-  $$(".sec-label, .display:not(.hero-title), .svc, .steps li, .fact, .species-card, .timber-specimen, .build-views, .build-ctrl, .quote, .contact-list, .work-note, .joints li")
+  $$(".sec-label, .display:not(.hero-title), .svc, .steps li, .fact, .species-card, .timber-specimen, .build-views, .build-ctrl, .quote, .contact-list, .work-note, .joints li, .care-tips li, .faq-list details, .ng-map, .greet-pick")
     .forEach((el) => { el.classList.add("rv"); rvIO.observe(el); });
 
   /* ---------------- Rings ---------------- */
@@ -139,7 +91,13 @@ const CONTACT = {
   for (let i = 0; i < RN; i++) ringW.push(0.6 + rand() * 0.9 + (i % 9 === 0 ? 0.8 : 0));
   const ringSum = ringW.reduce((a, b) => a + b, 0);
   const wob = Array.from({ length: 7 }, (_, j) => [rand() * 6.28, (0.004 + rand() * 0.01) / (1 + j * 0.35)]);
-  let lastRings = -1;
+  let lastRings = -1, ringRGB = "200,161,101", ringHi = "rgba(230,197,138,.95)";
+  const ringColours = () => {
+    const light = document.documentElement.dataset.theme === "light";
+    ringRGB = light ? "138,97,37" : "200,161,101"; ringHi = light ? "rgba(120,80,25,.95)" : "rgba(230,197,138,.95)";
+  };
+  ringColours();
+  document.addEventListener("lux:theme", () => { ringColours(); lastRings = -1; onScroll(); });
   function drawRings(p) {
     const n = Math.round(clamp(p, 0, 1) * RN);
     if (n === lastRings && ringsCv.width) return;
@@ -167,7 +125,7 @@ const CONTACT = {
       }
       rctx.closePath();
       const fresh = i === n - 1;
-      rctx.strokeStyle = fresh ? "rgba(230,197,138,.95)" : `rgba(200,161,101,${0.1 + 0.32 * (1 - age)})`;
+      rctx.strokeStyle = fresh ? ringHi : `rgba(${ringRGB},${0.1 + 0.32 * (1 - age)})`;
       rctx.lineWidth = fresh ? 2 : i % 9 === 0 ? 1.4 : 0.8;
       rctx.stroke();
     }
@@ -205,20 +163,6 @@ const CONTACT = {
     };
     next();
   }
-  // click a piece -> prefill enquiry
-  $$(".piece:not(.piece-end)").forEach((p) => {
-    p.tabIndex = 0; p.setAttribute("role", "link");
-    p.setAttribute("aria-label", `Enquire about ${$("h3", p).textContent}`);
-    const go = () => {
-      $("#q-msg").value = `I'm interested in the ${$("h3", p).textContent} (${$(".label", p).textContent}). `;
-      $("#q-msg").dispatchEvent(new Event("input"));
-      $("#contact").scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
-      setTimeout(() => $("#q-name").focus({ preventScroll: true }), 900);
-    };
-    p.addEventListener("click", go);
-    p.addEventListener("keydown", (e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), go()));
-  });
-
   /* ---------------- Services: floating swatch ---------------- */
   const float = $(".svc-float");
   if (finePointer) {
@@ -349,7 +293,7 @@ const CONTACT = {
     const c = updateCfg();
     const label = (n, v) => $(`input[name="${n}"][value="${v}"] + span`, cfgForm).textContent.trim();
     const msg = [
-      "Hello LUX96, I designed a table on your website:",
+      `${LUX.hello()}, LUX96! I designed a table on your website:`,
       "",
       `• Shape: ${label("shape", c.shape)}`,
       `• Timber: ${Wood.species[c.species].name}`,
@@ -378,11 +322,11 @@ const CONTACT = {
     }
     err.hidden = true;
     const body = [
-      "Hello LUX96, I'd like a quote.", "",
+      `${LUX.hello()}, LUX96! I'd like a quote.`, "",
       `Name: ${d.name}`, d.phone ? `Phone: ${d.phone}` : null, d.email ? `Email: ${d.email}` : null,
       `Project: ${d.project}`, "", d.message,
     ].filter((l) => l !== null).join("\n");
-    if (via === "email") location.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent(`Commission enquiry — ${d.project}`)}&body=${encodeURIComponent(body)}`;
+    if (via === "email") location.href = `mailto:${LUX.email}?subject=${encodeURIComponent(`Commission enquiry — ${d.project}`)}&body=${encodeURIComponent(body)}`;
     else window.open(waLink(body), "_blank", "noopener");
   });
 
@@ -394,17 +338,21 @@ const CONTACT = {
   }, { rootMargin: "400px" });
   fwIO.observe(fw.closest("footer"));
 
+  /* ---------------- FAQ structured data (built from the visible answers) ---------------- */
+  const faqLd = $("#faq-ld");
+  if (faqLd) faqLd.textContent = JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage",
+    mainEntity: $$(".faq details").map((d) => ({
+      "@type": "Question", name: $("summary", d).textContent.trim(),
+      acceptedAnswer: { "@type": "Answer", text: $("div", d).textContent.trim().replace(/\s+/g, " ") },
+    })),
+  });
+
   /* ---------------- Scroll loop ---------------- */
-  let lastY = scrollY, ticking = false;
+  let ticking = false;
   const progress = (el) => { const r = el.getBoundingClientRect(); return clamp(-r.top / (r.height - innerHeight), 0, 1); };
   function onScroll() {
     ticking = false;
-    const y = scrollY;
-    nav.classList.toggle("scrolled", y > 40);
-    nav.classList.toggle("hide", y > lastY && y > innerHeight * 0.8 && !menuOpen);
-    const cr = $("#contact").getBoundingClientRect();
-    $(".wa-fab").classList.toggle("show", y > innerHeight * 0.6 && !(cr.top < innerHeight && cr.bottom > 0));
-    lastY = y;
 
     // manifesto
     const mr = man.getBoundingClientRect();

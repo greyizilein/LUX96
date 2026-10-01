@@ -10,7 +10,10 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="LUX96 Furnitures — Built from the grain up">
   <meta property="og:description" content="Bespoke solid-wood furniture and joinery, made to measure.">
-  <script>document.documentElement.classList.add("js");</script>
+  <meta name="lux-root" content="./">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/img/icon-192.png">
+  <script>document.documentElement.classList.add("js");try{if(localStorage.getItem("lux-theme")==="light")document.documentElement.dataset.theme="light"}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -23,8 +26,9 @@
     "description": "Bespoke solid-wood furniture and joinery, made to measure."
   }
   </script>
+  <script type="application/ld+json" id="faq-ld"></script>
 </head>
-<body>
+<body class="has-hero">
   <a class="skip" href="#main">Skip to content</a>
 
   <!-- Preloader: rings grow 00 → 96 -->
@@ -34,6 +38,7 @@
     <div class="loader-word">LUX96</div>
   </div>
 
+  <!-- chrome:top (shared with generated pages by tools/build-pages.mjs) -->
   <div class="cursor" aria-hidden="true"><span class="cursor-label"></span></div>
   <div class="grain-overlay" aria-hidden="true"></div>
 
@@ -50,6 +55,14 @@
       <a href="#build"><i>04</i>Build a table</a>
       <a href="#contact"><i>05</i>Contact</a>
     </nav>
+    <div class="nav-tools">
+      <button class="icon-btn theme-toggle" type="button" aria-pressed="false" aria-label="Switch to daylight theme" data-cursor="Theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><g class="i-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></g><path class="i-moon" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+      </button>
+      <button class="icon-btn sound-toggle" type="button" aria-pressed="false" aria-label="Turn sound on" data-cursor="Sound">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="i-waves" d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11"/><path class="i-mute" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+      </button>
+    </div>
     <a class="nav-cta" href="#contact" data-cursor="Talk">Commission a piece</a>
     <button class="nav-burger" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span></span><span></span></button>
   </header>
@@ -64,7 +77,18 @@
       <a href="#contact"><i>05</i>Contact</a>
     </nav>
     <div class="menu-foot">
+      <nav class="menu-sub" aria-label="More">
+        <a href="#delivery">Delivery</a><a href="#faq">FAQ</a><a href="care.html">Care guide</a>
+      </nav>
       <a class="btn btn-brass c-wa" href="https://wa.me/2348167993933" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      <div class="menu-tools">
+      <button class="icon-btn theme-toggle" type="button" aria-pressed="false" aria-label="Switch to daylight theme" data-cursor="Theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><g class="i-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></g><path class="i-moon" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+      </button>
+      <button class="icon-btn sound-toggle" type="button" aria-pressed="false" aria-label="Turn sound on" data-cursor="Sound">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="i-waves" d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11"/><path class="i-mute" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+      </button>
+    </div>
     </div>
   </div>
 
@@ -72,6 +96,7 @@
     <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6a10.6 10.6 0 0 1-5.4-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.4 14.4 0 0 0 5.5 4.9c2 .9 2.8 1 3.9.8a3.3 3.3 0 0 0 2.1-1.5 2.6 2.6 0 0 0 .2-1.5c-.1-.2-.3-.3-.6-.4z"/></svg>
     <span>WhatsApp</span>
   </a>
+  <!-- /chrome:top -->
 
   <main id="main">
     <!-- ============ HERO ============ -->
@@ -79,7 +104,7 @@
       <canvas class="hero-slab" aria-hidden="true"></canvas>
       <div class="hero-shade" aria-hidden="true"></div>
       <div class="hero-inner">
-        <p class="label hero-top"><span>Bespoke furniture &amp; joinery</span><span>Workshop-built · Made to measure</span></p>
+        <p class="label hero-top"><span><b class="greet-rotator" aria-live="off">Welcome</b> · Bespoke furniture &amp; joinery</span><span>Workshop-built · Made to measure</span></p>
         <h1 class="hero-title">
           <span class="line"><span>Built from</span></span>
           <span class="line"><span><em>the grain</em> up.</span></span>
@@ -112,6 +137,15 @@
     <section class="studio" id="studio">
       <div class="wrap">
         <p class="label sec-label">01 — The Studio</p>
+        <div class="seal" role="img" aria-label="Joinery guarantee">
+          <svg viewBox="0 0 200 200" aria-hidden="true">
+            <defs><path id="seal-path" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
+            <circle cx="100" cy="100" r="96" class="seal-ring"/>
+            <circle cx="100" cy="100" r="60" class="seal-core"/>
+            <g class="seal-spin"><text><textPath href="#seal-path" startOffset="0">JOINERY GUARANTEE · BUILT TO OUTLAST · LUX96 WORKSHOP · </textPath></text></g>
+          </svg>
+          <div class="seal-mid"><b data-guarantee>10</b><span>year<br>guarantee</span></div>
+        </div>
         <p class="manifesto" data-words>
           LUX96 is a woodworking studio for people who would rather buy once. We draw every piece around the room it will live in, choose the boards ourselves, and join them so they stay joined — no flat-pack, no filler, no shortcuts you will find in ten years' time.
         </p>
@@ -146,38 +180,38 @@
       <div class="work-pin">
         <div class="work-sticky">
         <div class="work-track">
-          <article class="piece" data-cursor="Enquire">
+          <a class="piece" href="pieces/refectory-table.html" data-cursor="View">
             <div class="piece-media"><canvas data-piece="table" data-species="walnut"></canvas></div>
             <div class="piece-meta"><span class="label">No. 01</span><h3>Refectory Table</h3><p>Walnut · 220 × 95 × 76 cm · seats 8–10</p></div>
-          </article>
-          <article class="piece" data-cursor="Enquire">
+          </a>
+          <a class="piece" href="pieces/three-door-sideboard.html" data-cursor="View">
             <div class="piece-media"><canvas data-piece="sideboard" data-species="oak"></canvas></div>
             <div class="piece-meta"><span class="label">No. 02</span><h3>Three-Door Sideboard</h3><p>White oak · brass pulls · 180 × 45 × 82 cm</p></div>
-          </article>
-          <article class="piece" data-cursor="Enquire">
+          </a>
+          <a class="piece" href="pieces/bookmatched-wardrobe.html" data-cursor="View">
             <div class="piece-media"><canvas data-piece="wardrobe" data-species="iroko"></canvas></div>
             <div class="piece-meta"><span class="label">No. 03</span><h3>Bookmatched Wardrobe</h3><p>Iroko · full-height bar pulls · 120 × 60 × 210 cm</p></div>
-          </article>
-          <article class="piece" data-cursor="Enquire">
+          </a>
+          <a class="piece" href="pieces/platform-bed.html" data-cursor="View">
             <div class="piece-media"><canvas data-piece="bed" data-species="mahogany"></canvas></div>
             <div class="piece-meta"><span class="label">No. 04</span><h3>Platform Bed</h3><p>African mahogany · king · slatted base</p></div>
-          </article>
-          <article class="piece" data-cursor="Enquire">
+          </a>
+          <a class="piece" href="pieces/lounge-chair.html" data-cursor="View">
             <div class="piece-media"><canvas data-piece="chair" data-species="teak"></canvas></div>
             <div class="piece-meta"><span class="label">No. 05</span><h3>Lounge Chair</h3><p>Teak frame · leather cushions</p></div>
-          </article>
-          <article class="piece" data-cursor="Enquire">
+          </a>
+          <a class="piece" href="pieces/library-shelf.html" data-cursor="View">
             <div class="piece-media"><canvas data-piece="shelf" data-species="ash"></canvas></div>
             <div class="piece-meta"><span class="label">No. 06</span><h3>Library Shelf</h3><p>Ash · 100 × 35 × 200 cm · adjustable</p></div>
-          </article>
-          <article class="piece" data-cursor="Enquire">
+          </a>
+          <a class="piece" href="pieces/pedestal-desk.html" data-cursor="View">
             <div class="piece-media"><canvas data-piece="desk" data-species="walnut"></canvas></div>
             <div class="piece-meta"><span class="label">No. 07</span><h3>Pedestal Desk</h3><p>Walnut · three drawers · 150 × 70 cm</p></div>
-          </article>
-          <article class="piece" data-cursor="Enquire">
+          </a>
+          <a class="piece" href="pieces/two-panel-door.html" data-cursor="View">
             <div class="piece-media"><canvas data-piece="door" data-species="oak"></canvas></div>
             <div class="piece-meta"><span class="label">No. 08</span><h3>Two-Panel Door</h3><p>Solid oak · stile &amp; rail · made to opening</p></div>
-          </article>
+          </a>
           <div class="piece piece-end">
             <p class="display">Something<br><em>not on the list?</em></p>
             <a class="btn btn-brass" href="#contact" data-cursor="Talk">Tell us about it</a>
@@ -192,12 +226,12 @@
       <div class="wrap">
         <p class="label sec-label">What we make</p>
         <ol class="svc-list">
-          <li class="svc" data-species="walnut"><span class="svc-n">01</span><h3>Custom furniture</h3><p>Tables, chairs, beds, consoles, sideboards — drawn to your measurements and built in solid timber.</p></li>
-          <li class="svc" data-species="oak"><span class="svc-n">02</span><h3>Wardrobes &amp; kitchens</h3><p>Fitted wardrobes, kitchen cabinetry, vanities and storage that use every centimetre of the room.</p></li>
-          <li class="svc" data-species="iroko"><span class="svc-n">03</span><h3>Doors &amp; panelling</h3><p>Solid doors, frames, wall panelling, staircases, ceilings and media walls, finished to match.</p></li>
-          <li class="svc" data-species="mahogany"><span class="svc-n">04</span><h3>Commercial fit-outs</h3><p>Reception counters, boardroom tables, restaurant and hotel furniture, delivered to spec and on schedule.</p></li>
-          <li class="svc" data-species="teak"><span class="svc-n">05</span><h3>Restoration</h3><p>Repairs, re-gluing, refinishing and re-upholstery that bring tired or treasured pieces back.</p></li>
-          <li class="svc" data-species="ash"><span class="svc-n">06</span><h3>Design consultation</h3><p>Layouts, drawings, timber and finish samples — so you know exactly what you are getting before we cut.</p></li>
+          <li class="svc" data-species="walnut"><span class="svc-n">01</span><h3><a class="stretch" href="services/custom-furniture.html" data-cursor="Open">Custom furniture</a></h3><p>Tables, chairs, beds, consoles, sideboards — drawn to your measurements and built in solid timber.</p></li>
+          <li class="svc" data-species="oak"><span class="svc-n">02</span><h3><a class="stretch" href="services/wardrobes-kitchens.html" data-cursor="Open">Wardrobes &amp; kitchens</a></h3><p>Fitted wardrobes, kitchen cabinetry, vanities and storage that use every centimetre of the room.</p></li>
+          <li class="svc" data-species="iroko"><span class="svc-n">03</span><h3><a class="stretch" href="services/doors-panelling.html" data-cursor="Open">Doors &amp; panelling</a></h3><p>Solid doors, frames, wall panelling, staircases, ceilings and media walls, finished to match.</p></li>
+          <li class="svc" data-species="mahogany"><span class="svc-n">04</span><h3><a class="stretch" href="services/commercial-fit-outs.html" data-cursor="Open">Commercial fit-outs</a></h3><p>Reception counters, boardroom tables, restaurant and hotel furniture, delivered to spec and on schedule.</p></li>
+          <li class="svc" data-species="teak"><span class="svc-n">05</span><h3><a class="stretch" href="services/restoration.html" data-cursor="Open">Restoration</a></h3><p>Repairs, re-gluing, refinishing and re-upholstery that bring tired or treasured pieces back.</p></li>
+          <li class="svc" data-species="ash"><span class="svc-n">06</span><h3><a class="stretch" href="services/design-consultation.html" data-cursor="Open">Design consultation</a></h3><p>Layouts, drawings, timber and finish samples — so you know exactly what you are getting before we cut.</p></li>
         </ol>
       </div>
       <div class="svc-float" aria-hidden="true"></div>
@@ -325,12 +359,76 @@
       </div>
     </section>
 
+    <!-- ============ DELIVERY ============ -->
+    <section class="delivery" id="delivery">
+      <div class="wrap delivery-grid">
+        <div class="delivery-copy">
+          <p class="label sec-label">Where we deliver</p>
+          <h2 class="display">From our bench<br>to your <em>door</em>.</h2>
+          <p class="delivery-sub">Every piece leaves the workshop wrapped, blanketed and carried by our own team or a trusted carrier. Tap a state to check it.</p>
+          <div class="delivery-legend">
+            <span><i class="lg lg-del"></i>We deliver</span>
+            <span class="lg-inst-wrap"><i class="lg lg-inst"></i>Delivery &amp; on-site installation</span>
+          </div>
+          <p class="delivery-state" aria-live="polite"><span class="label">Selected</span><b class="ds-name">—</b><span class="ds-note"></span></p>
+          <a class="btn btn-line btn-sm c-wa" data-msg="Do you deliver to my area? I'm in " href="https://wa.me/2348167993933" target="_blank" rel="noopener">Ask about your area</a>
+        </div>
+        <figure class="ng-map">
+          <svg viewBox="0 0 744 600" role="group" aria-label="Map of Nigeria showing delivery coverage"></svg>
+          <figcaption class="map-credit">Map: <a href="https://github.com/VictorCazanave/svg-maps" target="_blank" rel="noopener">svg-maps</a> (based on MapSVG), CC BY 4.0</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="faq" id="faq">
+      <div class="wrap faq-grid">
+        <div>
+          <p class="label sec-label">Questions</p>
+          <h2 class="display">Good to <em>know</em>.</h2>
+          <p class="faq-sub">Can't find your answer? Ask us on WhatsApp and a real person from the workshop will reply.</p>
+          <a class="btn btn-brass btn-sm c-wa" data-msg="I have a question about ordering a piece: " href="https://wa.me/2348167993933" target="_blank" rel="noopener">Ask a question</a>
+        </div>
+        <div class="faq-list">
+          <details><summary>How long does a commission take?</summary><div><p>Most pieces take <b data-leadtime>4–8 weeks</b> from the day you approve the drawing to delivery. Large fitted jobs such as kitchens and full wardrobes can take longer; we give you a date before we start and keep you updated with photos along the way.</p></div></details>
+          <details><summary>How do payments work?</summary><div><p>We take a <b><span data-deposit>60</span>% deposit</b> to buy timber and start the build. The balance is due when the piece is finished and ready for delivery — you can inspect it (or ask for photos and a video) before you pay.</p></div></details>
+          <details><summary>Can I choose the size, timber and finish?</summary><div><p>Yes, everything is made to order. Every piece on this site is a starting point — tell us your measurements, choose from the timber rack, and pick a finish (natural oil, hard-wax oil, lacquer or stain).</p></div></details>
+          <details><summary>Do you deliver and install?</summary><div><p>Yes. We deliver ourselves or with a trusted carrier, and our team installs fitted work like wardrobes, kitchens, doors and panelling. See the <a href="#delivery">delivery map</a> for coverage.</p></div></details>
+          <details><summary>What does the guarantee cover?</summary><div><p>Our joinery is guaranteed for <b><span data-guarantee>10</span> years</b>: if a joint we cut fails in normal use, we repair it. Normal wear, water damage, direct sun and misuse aren't covered — the <a href="care.html">care guide</a> shows how to keep your piece at its best.</p></div></details>
+          <details><summary>Can you match an existing piece or a photo?</summary><div><p>Often, yes. Send us photos with rough measurements on WhatsApp. We'll tell you honestly what we can match, and suggest timber and finish to sit well with what you already own.</p></div></details>
+          <details><summary>Do you restore old furniture?</summary><div><p>Yes — re-gluing loose joints, repairing breaks, refinishing tired surfaces and re-upholstery. Send photos and we'll advise whether it's worth restoring.</p></div></details>
+          <details><summary>Do you work with interior designers and businesses?</summary><div><p>Yes. We build to drawings and specifications for designers, offices, restaurants and hotels, and can supply samples for approval before production.</p></div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CARE ============ -->
+    <section class="care-teaser" id="care">
+      <div class="wrap">
+        <p class="label sec-label">Aftercare</p>
+        <div class="care-head">
+          <h2 class="display">Look after it,<br>it will look after <em>you</em>.</h2>
+          <a class="btn btn-line btn-sm" href="care.html" data-cursor="Read">Read the care guide</a>
+        </div>
+        <ol class="care-tips">
+          <li><span class="care-n">01</span><h3>Dust, don't drown</h3><p>A soft, dry or barely damp cloth is all most pieces need. Never soak wood or leave water standing.</p></li>
+          <li><span class="care-n">02</span><h3>Mind the sun &amp; heat</h3><p>Strong sun fades timber and dry air from AC or heaters can open cracks. Rotate items and keep pieces away from vents.</p></li>
+          <li><span class="care-n">03</span><h3>Refresh the finish</h3><p>Oiled pieces love a thin coat of oil once or twice a year. Lacquered pieces only need a gentle wipe.</p></li>
+        </ol>
+      </div>
+    </section>
+
     <!-- ============ CONTACT ============ -->
     <section class="contact" id="contact">
       <div class="wrap contact-grid">
         <div>
           <p class="label sec-label">05 — Commission</p>
           <h2 class="display contact-title">Let's make<br>something that<br><em>outlives us.</em></h2>
+          <div class="greet-pick">
+            <span class="label">Greet us in</span>
+            <div class="lang-pick" role="group" aria-label="Greeting language for WhatsApp messages"></div>
+            <p class="greet-note">Your WhatsApp message will start with “<span class="lang-hello">Hello</span>”.</p>
+          </div>
           <ul class="contact-list">
             <li><span class="label">WhatsApp</span><a href="https://wa.me/2348167993933" class="c-wa" target="_blank" rel="noopener" data-cursor="Chat">Chat with the workshop ↗</a></li>
             <li><span class="label">Email</span><a href="#" class="c-email" data-cursor="Write">Send us an email ↗</a></li>
@@ -368,11 +466,31 @@
   </main>
 
   <!-- ============ FOOTER ============ -->
+  <!-- chrome:footer -->
   <footer class="footer">
     <div class="wrap footer-top">
-      <p>Bespoke furniture &amp; joinery, built from the grain up.</p>
-      <nav aria-label="Footer">
-        <a href="#studio">Studio</a><a href="#work">Work</a><a href="#timber">Timber</a><a href="#build">Build</a><a href="#contact">Contact</a>
+      <div class="footer-intro">
+        <p>Bespoke furniture &amp; joinery, built from the grain up.</p>
+        <p class="footer-guarantee"><b data-guarantee>10</b>-year joinery guarantee on every piece.</p>
+        <button class="btn btn-line btn-sm install-btn" type="button" hidden data-cursor="Install">Install the LUX96 app</button>
+        <p class="install-hint" hidden>On iPhone: tap <b>Share</b>, then <b>Add to Home Screen</b>.</p>
+      </div>
+      <nav class="footer-col" aria-label="Services">
+        <span class="label">Services</span>
+        <a href="services/custom-furniture.html">Custom furniture</a>
+        <a href="services/wardrobes-kitchens.html">Wardrobes &amp; kitchens</a>
+        <a href="services/doors-panelling.html">Doors &amp; panelling</a>
+        <a href="services/commercial-fit-outs.html">Commercial fit-outs</a>
+        <a href="services/restoration.html">Restoration</a>
+        <a href="services/design-consultation.html">Design consultation</a>
+      </nav>
+      <nav class="footer-col" aria-label="Help">
+        <span class="label">Help</span>
+        <a href="#build">Build a table</a>
+        <a href="#delivery">Delivery</a>
+        <a href="#faq">FAQ</a>
+        <a href="care.html">Care guide</a>
+        <a href="#contact">Contact</a>
       </nav>
     </div>
     <div class="footer-word" aria-hidden="true">LUX96</div>
@@ -381,9 +499,14 @@
       <a href="#top">Back to top ↑</a>
     </div>
   </footer>
+  <!-- /chrome:footer -->
 
+  <script src="assets/js/config.js"></script>
   <script src="assets/js/wood.js"></script>
   <script src="assets/js/render.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/nigeria-map.js"></script>
+  <script src="assets/js/delivery.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/alive.js"></script>
 </body>
