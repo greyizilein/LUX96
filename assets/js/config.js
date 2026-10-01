@@ -21,6 +21,10 @@ window.LUX = {
   deliveryStates: "all",                // CONFIRM
   installStates: [],                    // CONFIRM: states where the team also installs on site (shown brighter)
 
+  // Workshop opening hours (Lagos time), used for the live "open / closed" clock on the opening screen.
+  // Days: 0 = Sunday … 6 = Saturday. Keep in step with the hours shown in the contact section.
+  hours: { days: [1, 2, 3, 4, 5, 6], open: 8, close: 18 },
+
   // Greetings used on the opening screen and at the start of WhatsApp messages
   greetings: {
     en: { label: "English", hello: "Hello", welcome: "Welcome" },

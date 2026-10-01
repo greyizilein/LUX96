@@ -104,6 +104,7 @@
     <!-- ============ HERO ============ -->
     <section class="hero" aria-label="Introduction">
       <canvas class="hero-slab" aria-hidden="true"></canvas>
+      <canvas class="hero-fx" aria-hidden="true"></canvas>
       <div class="hero-shade" aria-hidden="true"></div>
       <div class="hero-inner">
         <p class="label hero-top"><span><b class="greet-rotator" aria-live="off">Welcome</b> · Bespoke furniture &amp; joinery</span><span>Workshop-built · Made to measure</span></p>
@@ -118,10 +119,18 @@
             <a class="btn btn-line" href="#work" data-cursor="View">See the work</a>
           </div>
         </div>
-        <div class="hero-meta" aria-hidden="true">
-          <span class="label">Specimen</span>
-          <strong>American Black Walnut</strong>
-          <span class="label hero-readout">Move to light the grain · <b class="lx">0.62</b> / <b class="ly">0.58</b></span>
+        <div class="hero-side">
+          <p class="live-chip label" aria-live="off"><i class="live-dot"></i><span class="live-state">Workshop</span> · <b class="live-time">--:--:--</b> WAT</p>
+          <a class="hero-show" href="pieces/refectory-table.html" data-cursor="View" aria-label="From the catalogue">
+            <span class="hs-media"><canvas class="hs-cv hs-a" aria-hidden="true"></canvas><canvas class="hs-cv hs-b" aria-hidden="true"></canvas><span class="label hs-tag">From the catalogue</span></span>
+            <span class="hs-meta">
+              <span class="label hs-no">No. 01</span>
+              <b class="hs-name">Refectory Table</b>
+              <span class="hs-sub"><span class="hs-timber">Walnut</span> · from <b class="odo hs-price">₦0</b></span>
+            </span>
+            <span class="hs-bar" aria-hidden="true"><i></i></span>
+          </a>
+          <span class="label hero-readout" aria-hidden="true">Move to light the grain · <b class="lx">0.62</b> / <b class="ly">0.58</b></span>
         </div>
       </div>
       <a class="scroll-cue" href="#studio" aria-label="Scroll to studio"><span></span></a>
@@ -513,7 +522,10 @@
   <script src="assets/js/common.js"></script>
   <script src="assets/js/nigeria-map.js"></script>
   <script src="assets/js/delivery.js"></script>
+  <script src="assets/js/pricing-data.js"></script>
+  <script src="assets/js/pricing.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/hero-live.js"></script>
   <script src="assets/js/alive.js"></script>
 </body>
 </html>

@@ -54,6 +54,7 @@ Business details and terms live in one file. Values marked **CONFIRM** are sensi
 | `whatsapp`, `email` | Every WhatsApp and email link. Never displayed on the page. |
 | `leadTime`, `depositPercent`, `guaranteeYears` | FAQ answers, piece specs, the guarantee seal and the footer |
 | `deliveryStates`, `installStates` | The delivery map: `"all"` or a list of state ids |
+| `hours` | Workshop opening days and hours (Lagos time) for the live "open / closed" clock on the opening screen |
 | `greetings` | The rotating welcome on the opening screen, and the greeting at the start of WhatsApp messages (English, Yorùbá, Igbo, Hausa) |
 
 ## Pricing & invoices (`assets/js/pricing-data.js`)
