@@ -10,6 +10,8 @@ Every visual is generated in the browser:
   the timber library specimen, the swatches and the footer wordmark.
 - **`assets/js/render.js`** draws studio-style renders of the catalogue pieces and the table
   configurator, using those wood textures.
+- **`assets/js/alive.js`** is the motion layer: magnetic buttons, tap ripples, shimmer, word-by-word
+  headings, card tilt, scroll-reactive marquee and more. It is skipped for reduced-motion users.
 - **`assets/js/main.js`** handles the rest: preloader, cursor, scroll effects, horizontal
   catalogue, timber library, dovetail animation, configurator and contact forms.
 

@@ -255,9 +255,16 @@ const CONTACT = {
   const tabs = $(".species-tabs");
   const specimen = Wood.slab($(".specimen-slab"), "walnut", 8);
   const specEl = $(".timber-specimen");
-  specEl.addEventListener("pointermove", (e) => { const r = specEl.getBoundingClientRect(); specimen.setLight((e.clientX - r.left) / r.width, 1 - (e.clientY - r.top) / r.height); });
-  specEl.addEventListener("pointerleave", () => specimen.setLight(0.62, 0.62));
+  // light follows the pointer; otherwise it drifts slowly across the board
+  let specHover = false, specVisible = false;
+  specEl.addEventListener("pointermove", (e) => { specHover = e.pointerType === "mouse"; const r = specEl.getBoundingClientRect(); specimen.setLight((e.clientX - r.left) / r.width, 1 - (e.clientY - r.top) / r.height); });
+  specEl.addEventListener("pointerleave", () => (specHover = false));
   specimen.setLight(0.62, 0.62);
+  new IntersectionObserver(([e]) => (specVisible = e.isIntersecting)).observe(specEl);
+  if (!reduced) (function drift(t) {
+    if (specVisible && !specHover) specimen.setLight(0.5 + Math.sin(t / 2300) * 0.3, 0.55 + Math.cos(t / 3100) * 0.28);
+    requestAnimationFrame(drift);
+  })(0);
   function pickSpecies(sp) {
     $$("button", tabs).forEach((b) => { const on = b.dataset.sp === sp; b.setAttribute("aria-selected", on); b.tabIndex = on ? 0 : -1; });
     const i = INFO[sp];
@@ -385,7 +392,7 @@ const CONTACT = {
     fw.style.setProperty("--wood", `url(${Wood.texture("teak", 1600, 520, 31, 300).toDataURL("image/jpeg", 0.85)})`);
     fw.classList.add("textured");
   }, { rootMargin: "400px" });
-  fwIO.observe(fw);
+  fwIO.observe(fw.closest("footer"));
 
   /* ---------------- Scroll loop ---------------- */
   let lastY = scrollY, ticking = false;
