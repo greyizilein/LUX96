@@ -35,6 +35,7 @@
   --bone: #efe7da; --bone-dim: #b9ad9c; --mute: #7d7062;
   --brass: #c8a165; --brass-hi: #e6c58a;
   --ink-rgb: 239, 231, 218; --bg-rgb: 18, 14, 11; --line: rgba(239, 231, 218, 0.12);
+  color: var(--bone);   /* re-apply: text colour is inherited from the page, so set it here too */
 }
 .theme-anim, .theme-anim *, .theme-anim *::before, .theme-anim *::after {
   transition: background-color .6s ease, color .6s ease, border-color .6s ease, fill .6s ease !important;
@@ -831,7 +832,7 @@ a.piece { display: block; color: inherit; }
 /* service hero */
 .s-hero { position: relative; min-height: 88vh; min-height: 88svh; display: flex; align-items: flex-end; overflow: hidden; }
 .s-slab { position: absolute; inset: 0; width: 100%; height: 100%; }
-.s-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18,14,11,.6), rgba(18,14,11,.15) 40%, rgba(18,14,11,.88)); }
+.s-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18,14,11,.7), rgba(18,14,11,.4) 45%, rgba(18,14,11,.9)); }
 .s-hero { --bone: #efe7da; --bone-dim: #cfc3b2; --brass: #c8a165; --brass-hi: #e6c58a; --mute: #a39584; --line: rgba(239,231,218,.18); --char: #120e0b; --ink-rgb: 239, 231, 218; color: var(--bone); }
 .s-hero-inner { position: relative; padding-top: 140px; padding-bottom: clamp(48px, 7vw, 90px); }
 .s-title { font-size: clamp(56px, 9vw, 150px); }
@@ -1257,3 +1258,4 @@ a.piece { display: block; color: inherit; }
   .btn-row > .btn { padding: 12px 16px; font-size: 13px; gap: 6px; }
   .btn-row > .btn.btn-sm { padding: 10px 14px; }
 }
+.s-hero .crumbs b, .s-hero .sec-label { color: var(--brass-hi); }
