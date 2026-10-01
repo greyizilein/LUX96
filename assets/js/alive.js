@@ -49,7 +49,7 @@
     const href = b.getAttribute("href") || "";
     const a = document.createElement("span");
     a.className = "arr"; a.setAttribute("aria-hidden", "true");
-    a.textContent = /^(https?:|mailto:)/.test(href) && !href.includes(location.host) ? "↗" : "→";
+    a.textContent = b.dataset.arrow || (/^(https?:|mailto:)/.test(href) && !href.includes(location.host) ? "↗" : "→");
     b.append(" ", a);
   });
 

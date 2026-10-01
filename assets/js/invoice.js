@@ -85,7 +85,11 @@
     const b = $(".inv-share");
     try {
       if (navigator.share) await navigator.share({ title: `LUX96 invoice ${inv.id}`, url: link });
-      else { await navigator.clipboard.writeText(link); b.textContent = "Link copied ✓"; setTimeout(() => (b.textContent = "Share link"), 1800); }
+      else {
+        await navigator.clipboard.writeText(link);
+        const lbl = b.querySelector(".share-lbl"), was = lbl.innerHTML;
+        lbl.textContent = "Copied ✓"; setTimeout(() => (lbl.innerHTML = was), 1800);
+      }
     } catch (e) {}
   });
 
