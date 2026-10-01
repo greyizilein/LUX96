@@ -1,0 +1,180 @@
+    <!-- ============ PRICING HERO ============ -->
+    <section class="pr-hero">
+      <div class="wrap pr-hero-grid">
+        <div class="pr-hero-copy">
+          {{CRUMBS}}
+          <p class="label sec-label">Pricing</p>
+          <h1 class="display pr-title">Honest prices,<br>cut to <em>measure</em>.</h1>
+          <p class="pr-lede">See what a piece costs before you ask. Build your project, watch the price update as you choose, and get a personalised invoice you can pay straight away.</p>
+          <div class="p-actions">
+            <a class="btn btn-brass" href="#estimator" data-cursor="Price">Price your piece</a>
+            <a class="btn btn-line" href="#pay" data-cursor="Read">How payment works</a>
+          </div>
+        </div>
+        <div class="tag-stage" aria-hidden="true">
+          <div class="tag-string"></div>
+          <div class="tag">
+            <span class="tag-hole"></span>
+            <span class="tag-kicker label">From</span>
+            <b class="tag-price odo">₦0</b>
+            <span class="tag-item">Dining table</span>
+            <span class="tag-foot label">Made to measure · LUX96</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRICE GUIDE ============ -->
+    <section class="pr-guide" id="guide">
+      <div class="wrap">
+        <div class="pr-guide-head">
+          <div>
+            <p class="label sec-label">Price guide</p>
+            <h2 class="display">Starting <em>prices</em>.</h2>
+          </div>
+          <div class="pr-timber">
+            <span class="label">Show prices in</span>
+            <div class="chips pr-timber-chips" role="radiogroup" aria-label="Timber for the price guide"></div>
+          </div>
+        </div>
+        <div class="pr-cards"></div>
+        <p class="pr-fine">“From” prices are for a modest size with a natural oil finish. Your exact price depends on size, timber, finish and extras — use the estimator below.</p>
+      </div>
+    </section>
+
+    <!-- ============ WHERE THE MONEY GOES ============ -->
+    <section class="pr-split">
+      <div class="wrap">
+        <p class="label sec-label">Transparency</p>
+        <h2 class="display">Where every <em>naira</em> goes.</h2>
+        <div class="split-bar" role="img" aria-label="Breakdown of a typical price"></div>
+        <div class="split-legend"></div>
+        <p class="split-example">On a <b class="split-sample">₦1,000,000</b> piece, that's <span class="split-sentence"></span>.</p>
+      </div>
+    </section>
+
+    <!-- ============ ESTIMATOR ============ -->
+    <section class="est" id="estimator">
+      <div class="wrap">
+        <div class="est-head">
+          <p class="label sec-label">The estimator</p>
+          <h2 class="display">Build it, <em>price it</em>, own it.</h2>
+          <p>Choose a piece, set the size, pick your timber. Add as many pieces as you like to your project, then create your invoice.</p>
+        </div>
+
+        <div class="est-grid">
+          <!-- left: the piece and the docket -->
+          <div class="est-stage">
+            <div class="est-render"><canvas class="est-canvas" role="img" aria-label="Preview of your piece"></canvas><span class="label est-render-tag"></span></div>
+            <div class="docket" aria-live="polite">
+              <div class="docket-head"><span class="label">Cut list</span><span class="label docket-no"></span></div>
+              <h3 class="docket-title"></h3>
+              <p class="docket-detail"></p>
+              <ul class="docket-lines"></ul>
+              <div class="docket-total">
+                <span class="label">Estimate</span>
+                <b class="odo docket-odo">₦0</b>
+                <span class="docket-range"></span>
+              </div>
+              <button type="button" class="btn btn-brass btn-wide est-add" data-cursor="Add">Add to my project</button>
+            </div>
+          </div>
+
+          <!-- right: controls -->
+          <form class="est-panel" id="est-form" aria-label="Estimator options" onsubmit="return false">
+            <fieldset><legend class="label"><i>01</i> Piece</legend><div class="est-types" role="radiogroup"></div></fieldset>
+            <fieldset><legend class="label"><i>02</i> Size</legend><div class="est-inputs"></div></fieldset>
+            <fieldset><legend class="label"><i>03</i> Timber</legend><div class="chips est-timbers" role="radiogroup"></div></fieldset>
+            <fieldset><legend class="label"><i>04</i> Finish</legend><div class="est-finishes" role="radiogroup"></div></fieldset>
+            <fieldset><legend class="label"><i>05</i> Extras</legend><div class="est-addons"></div></fieldset>
+          </form>
+        </div>
+
+        <!-- project tray -->
+        <div class="tray" id="project">
+          <div class="tray-head">
+            <h3 class="display tray-title">Your <em>project</em></h3>
+            <span class="label tray-count">0 pieces</span>
+          </div>
+          <ul class="tray-list"><li class="tray-empty">Nothing here yet — price a piece above and tap <b>Add to my project</b>.</li></ul>
+          <div class="tray-foot">
+            <div class="tray-opts">
+              <label class="field"><span class="label">Deliver to</span>
+                <select class="tray-state"><option value="">Choose your state…</option></select>
+              </label>
+              <label class="toggle"><input type="checkbox" class="tray-install"><span></span>Include on-site installation</label>
+              <div class="seg plan-seg" role="radiogroup" aria-label="Payment plan">
+                <label><input type="radio" name="plan" value="deposit" checked><span>Pay <b class="dep-pct">60</b>% deposit</span></label>
+                <label><input type="radio" name="plan" value="full"><span>Pay in full <b class="full-off"></b></span></label>
+              </div>
+            </div>
+            <dl class="tray-sum">
+              <div><dt>Pieces</dt><dd class="ts-sub">₦0</dd></div>
+              <div><dt>Delivery <small class="ts-km"></small></dt><dd class="ts-del">—</dd></div>
+              <div class="ts-inst-row"><dt>Installation</dt><dd class="ts-inst">—</dd></div>
+              <div class="ts-disc-row"><dt>Pay-in-full discount</dt><dd class="ts-disc">—</dd></div>
+              <div class="ts-total"><dt>Estimated total</dt><dd><b class="odo ts-odo">₦0</b></dd></div>
+              <div class="ts-now"><dt>Due to start</dt><dd class="ts-pay">₦0</dd></div>
+            </dl>
+          </div>
+          <button type="button" class="btn btn-brass est-checkout" disabled data-cursor="Invoice">Create my invoice</button>
+        </div>
+
+        <!-- customer details (slides open) -->
+        <form class="checkout" id="checkout" hidden novalidate>
+          <h3 class="display">Who is it <em>for</em>?</h3>
+          <p class="checkout-sub">Your details go only into your invoice — nothing is stored on a server.</p>
+          <div class="f2">
+            <div class="f"><input id="c-name" name="name" placeholder=" " autocomplete="name" required><label for="c-name">Full name *</label></div>
+            <div class="f"><input id="c-phone" name="phone" type="tel" placeholder=" " autocomplete="tel" required><label for="c-phone">Phone / WhatsApp *</label></div>
+          </div>
+          <div class="f2">
+            <div class="f"><input id="c-email" name="email" type="email" placeholder=" " autocomplete="email"><label for="c-email">Email</label></div>
+            <div class="f"><input id="c-addr" name="address" placeholder=" " autocomplete="street-address"><label for="c-addr">Delivery address</label></div>
+          </div>
+          <div class="f"><textarea id="c-note" name="note" rows="2" placeholder=" "></textarea><label for="c-note">Anything we should know? (colours, deadline, access…)</label></div>
+          <label class="toggle consent"><input type="checkbox" name="agree" required><span></span>I understand this is an estimate: final measurements are confirmed before we cut, and any difference is settled in the balance.</label>
+          <p class="q-err checkout-err" role="alert" hidden></p>
+          <button class="btn btn-brass" type="submit" data-cursor="Print">Print my invoice</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============ HOW PAYMENT WORKS ============ -->
+    <section class="pay" id="pay">
+      <div class="wrap">
+        <p class="label sec-label">How payment works</p>
+        <h2 class="display">Simple, <em>staged</em>, safe.</h2>
+        <ol class="pay-steps">
+          <li><span class="pay-n">01</span><h3>Your invoice</h3><p>Build your project above. Your invoice is created instantly, with a unique number.</p></li>
+          <li><span class="pay-n">02</span><h3><span class="dep-pct">60</span>% deposit</h3><p>Pay by bank transfer. Our account details appear on your invoice the moment you're ready — use your invoice number as the reference.</p></li>
+          <li><span class="pay-n">03</span><h3>We build</h3><p>We confirm measurements, buy your timber and start building, with progress photos on WhatsApp.</p></li>
+          <li><span class="pay-n">04</span><h3>Balance &amp; delivery</h3><p>Inspect the finished piece (or photos and a video), pay the balance, and we deliver.</p></li>
+        </ol>
+        <div class="safe">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l8 3v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10v-6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+          <p><b>Pay safely.</b> We only ever take payment into the account printed on your LUX96 invoice. If anyone asks you to pay somewhere else, message us on WhatsApp before you send money.</p>
+        </div>
+        <div class="my-invoices" hidden>
+          <p class="label">Your invoices on this device</p>
+          <ul></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRICING FAQ ============ -->
+    <section class="faq pr-faq">
+      <div class="wrap faq-grid">
+        <div>
+          <p class="label sec-label">Pricing questions</p>
+          <h2 class="display">Before you <em>pay</em>.</h2>
+        </div>
+        <div class="faq-list">
+          <details><summary>Is the estimate the final price?</summary><div><p>It's our honest price for what you've chosen. Before we cut, we confirm measurements (in person or from your photos). If anything changes — size, timber, extras — we tell you first and settle the difference in the balance.</p></div></details>
+          <details><summary>What's included?</summary><div><p>Design and drawings, timber, joinery, finishing and hardware. Delivery is calculated from our workshop to your state; installation is optional and shown separately.</p></div></details>
+          <details><summary>How long is my invoice valid?</summary><div><p>Invoices are valid for <b class="valid-days">14</b> days, because timber prices move. After that, create a fresh one in a minute.</p></div></details>
+          <details><summary>How do I pay?</summary><div><p>By bank transfer. Your personalised invoice shows the account details, the exact amount and a reference. After paying, tap <b>I've paid</b> on the invoice to send us your receipt on WhatsApp.</p></div></details>
+          <details><summary>Do you offer a discount for paying in full?</summary><div><p class="full-faq"></p></div></details>
+        </div>
+      </div>
+    </section>

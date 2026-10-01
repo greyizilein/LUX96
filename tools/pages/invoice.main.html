@@ -1,0 +1,86 @@
+    <section class="inv-page">
+      <div class="wrap">
+        <div class="inv-tools no-print">
+          {{CRUMBS}}
+          <div class="inv-tool-btns">
+            <a class="btn btn-line btn-sm inv-edit" href="./#estimator" data-cursor="Edit">Edit estimate</a>
+            <button class="btn btn-line btn-sm inv-print" type="button" data-cursor="Save">Save as PDF</button>
+            <button class="btn btn-line btn-sm inv-share" type="button" data-cursor="Share">Share link</button>
+          </div>
+        </div>
+
+        <!-- empty / broken link state -->
+        <div class="inv-empty" hidden>
+          <h1 class="display">No invoice <em>here</em>.</h1>
+          <p>This link doesn't contain an invoice, or it was cut short when it was copied. Build your project in the estimator to create a new one — it takes a minute.</p>
+          <a class="btn btn-brass" href="./#estimator">Open the estimator</a>
+        </div>
+
+        <div class="inv-wrap" hidden>
+          <div class="inv-slot" aria-hidden="true"></div>
+          <article class="inv" aria-label="Invoice">
+            <div class="inv-tamper" hidden>This invoice was changed after it was created. Please create a new one — the workshop will only accept unaltered invoices.</div>
+            <header class="inv-head">
+              <div class="inv-brand">
+                <img src="{{ROOT}}assets/img/logo.svg" alt="" width="44" height="44">
+                <div><b>LUX96 Furnitures</b><span>Bespoke furniture &amp; joinery</span></div>
+              </div>
+              <div class="inv-meta">
+                <h1>Invoice</h1>
+                <dl>
+                  <div><dt>No.</dt><dd class="inv-id"></dd></div>
+                  <div><dt>Date</dt><dd class="inv-date"></dd></div>
+                  <div><dt>Valid until</dt><dd class="inv-valid"></dd></div>
+                </dl>
+              </div>
+            </header>
+
+            <div class="inv-parties">
+              <div><span class="label">Billed to</span><p class="inv-to"></p></div>
+              <div><span class="label">Deliver to</span><p class="inv-ship"></p></div>
+            </div>
+
+            <table class="inv-items">
+              <thead><tr><th>Piece</th><th>Timber &amp; finish</th><th class="num">Amount</th></tr></thead>
+              <tbody></tbody>
+            </table>
+
+            <div class="inv-bottom">
+              <div class="inv-qr-wrap">
+                <div class="inv-qr" aria-hidden="true"></div>
+                <p>Scan to open this invoice</p>
+              </div>
+              <dl class="inv-totals"></dl>
+            </div>
+
+            <section class="inv-pay" aria-labelledby="pay-h">
+              <div class="inv-pay-now">
+                <span class="label" id="pay-h">Amount to pay now</span>
+                <b class="inv-paynow"></b>
+                <span class="inv-plan"></span>
+              </div>
+              <div class="inv-bank">
+                <div class="bank-row"><span class="label">Bank</span><b class="bank-name"></b></div>
+                <div class="bank-row bank-acct"><span class="label">Account number</span><b class="bank-number"></b><button type="button" class="copy no-print" data-copy="number" data-cursor="Copy">Copy</button></div>
+                <div class="bank-row bank-holder" hidden><span class="label">Account name</span><b class="bank-holder-name"></b></div>
+                <div class="bank-row"><span class="label">Reference</span><b class="bank-ref"></b><button type="button" class="copy no-print" data-copy="ref" data-cursor="Copy">Copy</button></div>
+              </div>
+            </section>
+
+            <ul class="inv-terms">
+              <li>This is an estimate based on your choices. Final measurements are confirmed before we cut; any difference is settled in the balance.</li>
+              <li>Please use the invoice number as your transfer reference, then send us your receipt.</li>
+              <li>Lead time: <span data-leadtime>4–8 weeks</span> from confirmation. Joinery guaranteed for <span data-guarantee>10</span> years.</li>
+              <li>We only accept payment into the account shown on this invoice.</li>
+            </ul>
+            <div class="inv-stamp" aria-hidden="true">Estimate</div>
+          </article>
+
+          <div class="inv-actions no-print">
+            <a class="btn btn-brass inv-paid" href="#" target="_blank" rel="noopener" data-cursor="Send">I've paid — send receipt</a>
+            <a class="btn btn-line inv-send" href="#" target="_blank" rel="noopener" data-cursor="Send">Send invoice to the workshop</a>
+          </div>
+          <p class="inv-after no-print">After paying, tap <b>I've paid</b> and attach your transfer receipt in WhatsApp. We confirm every payment personally.</p>
+        </div>
+      </div>
+    </section>
