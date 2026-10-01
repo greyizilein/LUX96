@@ -54,7 +54,7 @@ window.LUX.afterCount(function () {
 
   /* ---------------- Reveal ---------------- */
   const rvIO = io((el) => el.classList.add("in"), { rootMargin: "0px 0px -8% 0px" });
-  $$(".sec-label, .display:not(.hero-title), .svc, .steps li, .fact, .species-card, .timber-specimen, .build-views, .build-ctrl, .quote, .contact-list, .work-note, .joints li, .care-tips li, .faq-list details, .ng-map, .greet-pick")
+  $$(".sec-label, .display:not(.hero-title), .svc, .steps li, .fact, .species-card, .timber-specimen, .build-views, .build-ctrl, .quote, .contact-list, .work-note, .joints li, .care-tips li, .faq-list details, .ng-map, .greet-pick, .idea, .ideas-sub")
     .forEach((el) => { el.classList.add("rv"); rvIO.observe(el); });
 
   /* ---------------- Rings ---------------- */
