@@ -216,7 +216,7 @@ services.forEach((s, i) => {
   ];
   writeFileSync(join(ROOT, "services", `${s.slug}.html`), page({
     root, title: `${strip(s.name)} — LUX96 Furnitures`,
-    description: `${s.lede} ${s.intro.split(". ")[0]}.`, bodyClass: "service-page", main, ld,
+    description: `${s.lede} ${s.intro.split(". ")[0]}.`, bodyClass: "service-page has-hero", main, ld,
   }));
 });
 
