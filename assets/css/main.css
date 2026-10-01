@@ -1355,3 +1355,36 @@ a.piece { display: block; color: inherit; }
   .s-films .resin-inner { grid-template-columns: 1fr; }
   .s-films .reels { grid-auto-columns: minmax(0, 300px); }
 }
+
+/* ==========================================================
+   Ideas board: a masonry of inspiration pictures (phone first)
+   ========================================================== */
+.ideas { padding: clamp(72px, 10vw, 150px) 0; }
+.ideas-head { display: grid; gap: 14px; margin-bottom: 32px; max-width: 40em; }
+.ideas-head .display { margin: 0; font-size: clamp(40px, 4.6vw, 72px); }
+.ideas-sub { color: var(--bone-dim); font-size: 15px; }
+.ideas-grid { columns: 2; column-gap: 12px; }
+.idea { position: relative; display: block; margin: 0 0 12px; break-inside: avoid; border-radius: 16px; overflow: hidden; background: #1a1511; color: #efe7da;
+  -webkit-tap-highlight-color: transparent; transform: translateZ(0); }
+.idea img { display: block; width: 100%; height: auto; transition: transform 1.2s var(--ease); }
+/* phones: caption sits under the picture so the photo stays clear */
+.idea-cap { display: grid; gap: 2px; padding: 10px 12px 12px; }
+.idea-cap b { font-family: var(--serif); font-weight: 400; font-size: 17px; line-height: 1.15; }
+.idea-cap > span { font-size: 12px; line-height: 1.35; color: rgba(239, 231, 218, .72); }
+.idea-cap i { font-style: normal; color: #e6c58a; margin-top: 6px; font-size: 10px; }
+.idea:active img { transform: scale(1.03); }
+@media (hover: hover) {
+  .idea:hover img { transform: scale(1.05); }
+  .idea-cap i { opacity: 0; translate: 0 6px; transition: opacity .4s, translate .4s var(--ease); }
+  .idea:hover .idea-cap i, .idea:focus-visible .idea-cap i { opacity: 1; translate: 0 0; }
+}
+@media (min-width: 760px) {
+  .ideas-grid { columns: 3; column-gap: 18px; }
+  .idea { margin-bottom: 18px; border-radius: 18px; }
+  .idea::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+    background: linear-gradient(to top, rgba(14, 10, 8, .8), rgba(14, 10, 8, 0) 45%); }
+  .idea-cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 18px; }
+  .idea-cap b { font-size: 22px; }
+  .idea-cap > span { font-size: 13px; }
+}
+@media (pointer: coarse) { .idea-cap i { font-size: 11px; } }
