@@ -11,7 +11,7 @@ window.LUX_PRICING = {
   bank: {
     name: "OPay",
     accountNumber: "8167993933",
-    accountName: "",                    // CONFIRM: exact name on the OPay account (shown so payers can check it)
+    accountName: "DAVID JONAH",         // name on the account, shown so payers can check it matches
   },
 
   quoteValidDays: 14,                   // CONFIRM: how long an estimate/invoice stays valid
