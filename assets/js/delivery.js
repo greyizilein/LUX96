@@ -2,7 +2,8 @@
    LUX96 — "Where we deliver" map
    Coverage comes from LUX.deliveryStates / LUX.installStates (config.js).
    ========================================================== */
-(function () {
+// Runs once the 00→96 count has finished, so the counter always gets the device to itself.
+window.LUX.afterCount(function () {
   const L = window.LUX, M = window.NG_MAP;
   const svg = document.querySelector(".ng-map svg");
   if (!svg || !M) return;
@@ -75,4 +76,4 @@
   // start with a sensible selection: the first installation state, else Lagos, else the first lit state
   const start = M.locations.find((l) => l.id === (install[0] || (deliver.includes("lagos") ? "lagos" : deliver[0])));
   if (start) select(start);
-})();
+});

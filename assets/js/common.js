@@ -206,6 +206,41 @@
   addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   onScroll();
 
+  /* ---------------- Preloader: 00 → 96 on every fresh load or refresh ---------------- */
+  const sGet = (k) => { try { return sessionStorage.getItem(k); } catch (e) { return null; } };
+  const viaTransition = !!sGet("lux-nav");            // arrived by an in-site link: the curtain covers that instead
+  const ready = () => { document.body.classList.add("ready"); document.dispatchEvent(new Event("lux:ready")); };
+  const waiting = [];
+  L.counted = false;
+  L.afterCount = (fn) => (L.counted ? fn() : waiting.push(fn));
+  const counted = () => { L.counted = true; waiting.splice(0).forEach((fn) => { try { fn(); } catch (e) { console.error(e); } }); };
+  const loader = $(".loader");
+  if (loader && !viaTransition && !reduced) {
+    const svg = $(".loader-rings", loader);
+    const rings = [];
+    for (let i = 1; i <= 12; i++) {
+      const e = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+      e.setAttribute("cx", 100 - i * 0.3); e.setAttribute("cy", 100 + i * 0.25);
+      e.setAttribute("rx", i * 7.6); e.setAttribute("ry", i * 7.1);
+      svg.appendChild(e); rings.push(e);
+    }
+    const num = $(".loader-count span", loader);
+    let n = 0;
+    // every number from 00 to 96, one per frame (about 1.6s at 60Hz, 0.8s at 120Hz)
+    (function tick() {
+      n += 1;
+      num.textContent = String(n).padStart(2, "0");
+      rings.forEach((r, i) => r.classList.toggle("on", i < (n / 96) * 12));
+      if (n < 96) { requestAnimationFrame(tick); return; }
+      counted();                                         // heavy page setup runs now, while "96" is showing
+      setTimeout(() => { loader.classList.add("done"); ready(); setTimeout(() => loader.remove(), 1100); }, 180);
+    })();
+  } else {
+    if (loader) loader.remove();
+    counted();
+    ready();
+  }
+
   /* ---------------- Page transitions ---------------- */
   const curtain = document.createElement("div");
   curtain.className = "curtain"; curtain.setAttribute("aria-hidden", "true");

@@ -2,7 +2,8 @@
    LUX96 Furnitures — home page behaviour
    (shared behaviour lives in common.js; settings in config.js)
    ========================================================== */
-(function () {
+// Runs once the 00→96 count has finished, so the counter always gets the device to itself.
+window.LUX.afterCount(function () {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
@@ -12,34 +13,6 @@
   const isDesktop = () => innerWidth > 820;
   const LUX = window.LUX;
   const waLink = LUX.wa;
-
-  /* ---------------- Loader ---------------- */
-  const loader = $(".loader");
-  const start = () => document.body.classList.add("ready");
-  let visited = false; try { visited = !!sessionStorage.getItem("lux-visited-home"); sessionStorage.setItem("lux-visited-home", "1"); } catch (e) {}
-  if (loader && !reduced && !visited) {
-    const svg = $(".loader-rings", loader);
-    const rings = [];
-    for (let i = 1; i <= 12; i++) {
-      const e = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
-      e.setAttribute("cx", 100 - i * 0.3); e.setAttribute("cy", 100 + i * 0.25);
-      e.setAttribute("rx", i * 7.6); e.setAttribute("ry", i * 7.1);
-      svg.appendChild(e); rings.push(e);
-    }
-    const num = $(".loader-count span", loader);
-    const t0 = performance.now(), dur = 1500;
-    (function tick(now) {
-      const p = clamp((now - t0) / dur, 0, 1);
-      const e = 1 - Math.pow(1 - p, 3);
-      num.textContent = String(Math.round(e * 96)).padStart(2, "0");
-      rings.forEach((r, i) => r.classList.toggle("on", i < e * 12));
-      if (p < 1) requestAnimationFrame(tick);
-      else setTimeout(() => { loader.classList.add("done"); start(); setTimeout(() => loader.remove(), 1200); }, 250);
-    })(t0);
-  } else {
-    loader && loader.remove();
-    start();
-  }
 
   const sections = $$('#nav-links a[href^="#"]').map((a) => [a, $(a.getAttribute("href"))]).filter(([, s]) => s);
 
@@ -403,4 +376,4 @@
   updateCfg();
   onScroll();
   if (document.fonts) document.fonts.ready.then(() => { layoutWork(); onScroll(); });
-})();
+});
