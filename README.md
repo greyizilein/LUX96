@@ -32,6 +32,8 @@ spec to WhatsApp), the commission process, and contact.
 | Pieces | `pieces/*.html` | One page per catalogue piece, with a live render you can switch between timbers. |
 | Services | `services/*.html` | One page per service, with a live lit wood slab behind the title. |
 | Care guide | `care.html` | Everyday care, care by finish, Harmattan and rainy-season advice, small fixes. |
+| Pricing | `pricing/index.html` | Price guide, cost breakdown, the estimator, project tray and checkout. |
+| Invoice | `pricing/invoice.html` | A personalised invoice, carried entirely inside its link (`#i=…`). |
 | Offline | `offline.html` | Shown by the service worker when there's no connection. |
 
 The piece, service and care pages are **generated**. Edit `tools/content.mjs` (or the header and footer in
@@ -54,12 +56,31 @@ Business details and terms live in one file. Values marked **CONFIRM** are sensi
 | `deliveryStates`, `installStates` | The delivery map: `"all"` or a list of state ids |
 | `greetings` | The rotating welcome on the opening screen, and the greeting at the start of WhatsApp messages (English, Yorùbá, Igbo, Hausa) |
 
+## Pricing & invoices (`assets/js/pricing-data.js`)
+
+Every price on the site comes from one file. **All figures are placeholders for the workshop to set.**
+
+| Setting | What it controls |
+|---------|------------------|
+| `bank` | Bank name, account number and account name. **Shown only on a personalised invoice**, when someone is ready to pay. |
+| `items` | Each piece's size inputs, base and timber cost, and extras |
+| `timbers`, `finishes` | Price multipliers |
+| `workshopState`, `delivery`, `installation` | Delivery is priced by distance from the workshop's state; installation is a percentage with a minimum |
+| `quoteValidDays`, `fullPaymentDiscount`, `breakdown` | Invoice validity, the pay-in-full discount, and the "where every naira goes" chart |
+
+How it works:
+
+1. The customer builds a project in the estimator and fills in their details.
+2. An invoice is generated in the browser with a unique number (`LUX-YYMMDD-XXXX`). It shows the bank details, the amount due now, a payment reference, a QR code and "I've paid" / "Send to workshop" WhatsApp buttons.
+3. The invoice lives in its own link, so nothing is stored on a server and the workshop sees exactly what the customer sees. A checksum flags links that were edited after creation.
+4. **Always check an invoice against your prices before accepting payment.**
+
 ## Features
 
 - **Daylight theme:** a sun/moon toggle in the header. The choice is remembered.
 - **Sound:** synthesized woodshop sounds (a knock, a chisel tap, a plane stroke) on interactions. Off by default; a speaker toggle turns it on. No audio files.
 - **Page transitions:** a walnut-dark curtain slides between pages.
-- **Offline and install:** `manifest.webmanifest` and `sw.js` make the site installable ("Add to home screen") and usable offline once visited. **Bump `VERSION` in `sw.js` on each deploy** so returning visitors get fresh files.
+- **Offline and install:** `manifest.webmanifest` and `sw.js` make the site installable ("Add to home screen") and usable offline once visited. Files are always fetched fresh when online, so deploys show up immediately with nothing to bump.
 - **Delivery map:** the Nigeria state outlines come from [svg-maps](https://github.com/VictorCazanave/svg-maps) (based on MapSVG), CC BY 4.0. The credit is shown under the map.
 - **FAQ and structured data:** FAQPage, Product, Service, Article and Breadcrumb JSON-LD for search engines.
 

@@ -185,7 +185,7 @@
   if (burger) burger.addEventListener("click", () => setMenu(!L.menuOpen));
   if (menu) $$("a", menu).forEach((a) => a.addEventListener("click", () => setMenu(false)));
   addEventListener("keydown", (e) => e.key === "Escape" && setMenu(false));
-  addEventListener("resize", () => innerWidth > 820 && setMenu(false));
+  addEventListener("resize", () => innerWidth > 1060 && setMenu(false));
 
   const fab = $(".wa-fab"), contact = $("#contact");
   let lastY = scrollY, ticking = false;
@@ -216,6 +216,7 @@
     ss.del("lux-nav");
     curtain.classList.add("cover");
     requestAnimationFrame(() => requestAnimationFrame(() => curtain.classList.add("lift")));
+    setTimeout(() => (curtain.className = "curtain"), 1100);   // park it, hidden, once it has lifted
   }
   ss.set("lux-visited", "1");
   document.addEventListener("click", (e) => {

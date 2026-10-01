@@ -41,7 +41,7 @@
     start();
   }
 
-  const sections = $$("#nav-links a").map((a) => [a, $(a.getAttribute("href"))]).filter(([, s]) => s);
+  const sections = $$('#nav-links a[href^="#"]').map((a) => [a, $(a.getAttribute("href"))]).filter(([, s]) => s);
 
   /* ---------------- Hero slab ---------------- */
   const hero = $(".hero");
@@ -285,6 +285,9 @@
       const seats = Render.tablePlan(planCv, c);
       Render.tableSide(sideCv, c);
       $(".cfg-seats").textContent = seats;
+      const len = c.shape === "round" ? c.width : c.length;
+      const finish = { square: "oil", chamfer: "oil", rounded: "oil" }[c.edge];
+      $(".cfg-price").href = `pricing/?type=table&length=${len}&width=${c.width}&species=${c.species}&finish=${finish}${c.base !== "legs" ? "&addons=trestle" : ""}`;
     });
     return c;
   }

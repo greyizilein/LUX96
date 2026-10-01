@@ -25,13 +25,14 @@ function chrome(html, root) {
   return html
     .replace(/class="nav-logo" href="#top"/g, `class="nav-logo" href="${root}"`)
     .replace(/href="#(?!top"|main")([^"]*)"/g, `href="${root}#$1"`)
-    .replace(/(href|src)="(assets\/|services\/|pieces\/|care\.html)/g, `$1="${root}$2`);
+    .replace(/(href|src)="(assets\/|services\/|pieces\/|pricing\/|care\.html)/g, `$1="${root}$2`);
 }
 
 const esc = (s) => s.replace(/&(?!amp;|lt;|gt;|quot;)/g, "&amp;");
 const strip = (s) => s.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&");
 
-function page({ root, title, description, bodyClass, main, ld = [] }) {
+const DEFAULT_SCRIPTS = ["config", "wood", "render", "common", "page", "alive"];
+function page({ root, title, description, bodyClass, main, ld = [], scripts = DEFAULT_SCRIPTS, robots = "" }) {
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -39,7 +40,7 @@ function page({ root, title, description, bodyClass, main, ld = [] }) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${title}</title>
   <meta name="description" content="${esc(description)}">
-  <meta name="theme-color" content="#120e0b">
+  <meta name="theme-color" content="#120e0b">${robots ? `\n  <meta name="robots" content="${robots}">` : ""}
   <meta name="lux-root" content="${root}">
   <link rel="icon" href="${root}assets/img/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="${root}manifest.webmanifest">
@@ -61,12 +62,7 @@ ${chrome(TOP, root)}
 ${main}
   </main>
 ${chrome(FOOTER, root)}
-  <script src="${root}assets/js/config.js"></script>
-  <script src="${root}assets/js/wood.js"></script>
-  <script src="${root}assets/js/render.js"></script>
-  <script src="${root}assets/js/common.js"></script>
-  <script src="${root}assets/js/page.js"></script>
-  <script src="${root}assets/js/alive.js"></script>
+${scripts.map((n) => `  <script src="${root}assets/${n.startsWith("vendor/") ? n : "js/" + n}.js"></script>`).join("\n")}
 </body>
 </html>
 `;
@@ -80,6 +76,7 @@ const crumbLd = (items) => ({
 });
 const TIMBERS = ["walnut", "oak", "iroko", "mahogany", "teak", "ash"];
 const TIMBER_NAMES = { walnut: "Walnut", oak: "Oak", iroko: "Iroko", mahogany: "Mahogany", teak: "Teak", ash: "Ash" };
+const PRICE_TYPE = { table: "table", sideboard: "sideboard", wardrobe: "wardrobe", bed: "bed", chair: "lounge", shelf: "shelf", desk: "desk", door: "door" };
 const bySlug = Object.fromEntries(pieces.map((p) => [p.slug, p]));
 const card = (p, root) => `
           <a class="mini" href="${root}pieces/${p.slug}.html" data-cursor="View">
@@ -103,7 +100,7 @@ pieces.forEach((p, i) => {
           <p class="p-lede">${p.lede}</p>
           <div class="p-actions">
             <a class="btn btn-brass c-wa" data-msg="${esc(msg)}" href="https://wa.me/${"2348167993933"}" target="_blank" rel="noopener" data-cursor="Ask">Enquire on WhatsApp</a>
-            ${p.build ? `<a class="btn btn-line" href="${root}#build" data-cursor="Build">Design your own</a>` : `<a class="btn btn-line" href="${root}#work" data-cursor="Back">All pieces</a>`}
+            <a class="btn btn-line" href="${root}pricing/?type=${PRICE_TYPE[p.kind]}&species=${p.species}" data-cursor="Price">Get a price</a>
           </div>
         </div>
         <div class="p-media">
@@ -177,7 +174,7 @@ services.forEach((s, i) => {
         <p class="s-lede">${s.lede}</p>
         <div class="p-actions">
           <a class="btn btn-brass c-wa" data-msg="${esc(msg)}" href="https://wa.me/2348167993933" target="_blank" rel="noopener" data-cursor="Ask">Start on WhatsApp</a>
-          <a class="btn btn-line" href="${root}#work" data-cursor="View">See the catalogue</a>
+          <a class="btn btn-line" href="${root}pricing/" data-cursor="Price">See pricing</a>
         </div>
       </div>
     </section>
@@ -292,4 +289,26 @@ ${sections.map(([id, h, items], k) => `
   }));
 }
 
-console.log(`Built ${pieces.length} piece pages, ${services.length} service pages and care.html`);
+/* ---------------- pricing & invoice ---------------- */
+{
+  const root = "../";
+  mkdirSync(join(ROOT, "pricing"), { recursive: true });
+  const frag = (name) => readFileSync(join(ROOT, "tools", "pages", name), "utf8").replace(/\{\{ROOT\}\}/g, root);
+  writeFileSync(join(ROOT, "pricing", "index.html"), page({
+    root, title: "Pricing & estimator — LUX96 Furnitures",
+    description: "Starting prices for bespoke solid-wood furniture, a live price estimator and instant personalised invoices from LUX96 Furnitures.",
+    bodyClass: "pricing-page",
+    main: frag("pricing.main.html").replace("{{CRUMBS}}", crumbs(root, [["Pricing"]])),
+    ld: [crumbLd(["Home", "Pricing"])],
+    scripts: ["config", "wood", "render", "common", "nigeria-map", "pricing-data", "pricing", "pricing-page", "page", "alive"],
+  }));
+  writeFileSync(join(ROOT, "pricing", "invoice.html"), page({
+    root, title: "Your invoice — LUX96 Furnitures", robots: "noindex",
+    description: "Your personalised LUX96 Furnitures invoice.",
+    bodyClass: "invoice-page",
+    main: frag("invoice.main.html").replace("{{CRUMBS}}", crumbs(root, [["Pricing", "./"], ["Invoice"]])),
+    scripts: ["config", "wood", "common", "pricing-data", "pricing", "vendor/qrcode", "invoice", "alive"],
+  }));
+}
+
+console.log(`Built ${pieces.length} piece pages, ${services.length} service pages, care.html and the pricing pages`);
