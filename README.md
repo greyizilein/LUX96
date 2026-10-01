@@ -40,8 +40,8 @@ output directory to **`/`**. `_headers` adds security and caching headers.
 
 | What | Where |
 |------|-------|
-| WhatsApp number and email | `CONTACT` at the top of `assets/js/main.js`. Links on the page update automatically. |
-| Phone number shown on the page, address, hours | `#contact` section in `index.html` |
+| WhatsApp number (set: +234 816 799 3933) and email | `CONTACT` at the top of `assets/js/main.js`. WhatsApp links open with a ready-to-send introduction (`INTRO`). |
+| Address, hours (phone is set) | `#contact` section in `index.html` |
 | Instagram / Facebook links | `.socials` in `index.html` |
 | JSON-LD business info | `<script type="application/ld+json">` in `index.html` |
 

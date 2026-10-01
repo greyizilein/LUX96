@@ -3,7 +3,7 @@
    >>> Put the real business details here: <<<
    ========================================================== */
 const CONTACT = {
-  whatsapp: "0000000000000",          // international format, digits only (used for wa.me links)
+  whatsapp: "2348167993933",          // international format, digits only (used for wa.me links)
   email: "hello@lux96furnitures.com",
 };
 
@@ -18,7 +18,9 @@ const CONTACT = {
   const waLink = (text) => `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
 
   // contact details from CONFIG
-  $$(".c-wa").forEach((a) => (a.href = `https://wa.me/${CONTACT.whatsapp}`));
+  // Every general WhatsApp link opens a chat with a ready-to-send introduction.
+  const INTRO = "Hello LUX96 Furnitures! I found you through your website and I'm interested in having a piece made. Could you tell me how to get started, and what information you need from me for a quote?";
+  $$(".c-wa").forEach((a) => (a.href = waLink(INTRO)));
   $$(".c-email").forEach((a) => { a.href = `mailto:${CONTACT.email}`; a.textContent = CONTACT.email; });
   $$(".year").forEach((el) => (el.textContent = new Date().getFullYear()));
 
@@ -68,16 +70,24 @@ const CONTACT = {
   } else cursor.remove();
 
   /* ---------------- Nav ---------------- */
-  const nav = $(".nav"), burger = $(".nav-burger"), links = $("#nav-links");
+  const nav = $(".nav"), burger = $(".nav-burger"), links = $("#nav-links"), menu = $("#menu");
+  let menuOpen = false;
   const setMenu = (open) => {
+    if (open === menuOpen) return;
+    menuOpen = open;
     burger.setAttribute("aria-expanded", String(open));
     burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    links.classList.toggle("open", open);
-    document.body.style.overflow = open ? "hidden" : "";
+    menu.classList.toggle("open", open);
+    nav.classList.toggle("menu-open", open);
+    nav.classList.remove("hide");
+    document.body.classList.toggle("menu-lock", open);
+    document.documentElement.style.overflow = open ? "hidden" : "";
+    if (open) $("a", menu).focus({ preventScroll: true });
   };
-  burger.addEventListener("click", () => setMenu(burger.getAttribute("aria-expanded") !== "true"));
-  $$("a", links).forEach((a) => a.addEventListener("click", () => setMenu(false)));
+  burger.addEventListener("click", () => setMenu(!menuOpen));
+  $$("a", menu).forEach((a) => a.addEventListener("click", () => setMenu(false)));
   addEventListener("keydown", (e) => e.key === "Escape" && setMenu(false));
+  addEventListener("resize", () => innerWidth > 820 && setMenu(false));
   const sections = $$("#nav-links a").map((a) => [a, $(a.getAttribute("href"))]).filter(([, s]) => s);
 
   /* ---------------- Hero slab ---------------- */
@@ -383,7 +393,9 @@ const CONTACT = {
     ticking = false;
     const y = scrollY;
     nav.classList.toggle("scrolled", y > 40);
-    nav.classList.toggle("hide", y > lastY && y > innerHeight * 0.8 && !links.classList.contains("open"));
+    nav.classList.toggle("hide", y > lastY && y > innerHeight * 0.8 && !menuOpen);
+    const cr = $("#contact").getBoundingClientRect();
+    $(".wa-fab").classList.toggle("show", y > innerHeight * 0.6 && !(cr.top < innerHeight && cr.bottom > 0));
     lastY = y;
 
     // manifesto
