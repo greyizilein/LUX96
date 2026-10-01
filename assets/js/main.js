@@ -2,6 +2,7 @@
    LUX96 Furnitures — site behaviour
    >>> Put the real business details here: <<<
    ========================================================== */
+// These details are only used inside links; they are never displayed on the page.
 const CONTACT = {
   whatsapp: "2348167993933",          // international format, digits only (used for wa.me links)
   email: "hello@lux96furnitures.com",
@@ -21,7 +22,7 @@ const CONTACT = {
   // Every general WhatsApp link opens a chat with a ready-to-send introduction.
   const INTRO = "Hello LUX96 Furnitures! I found you through your website and I'm interested in having a piece made. Could you tell me how to get started, and what information you need from me for a quote?";
   $$(".c-wa").forEach((a) => (a.href = waLink(INTRO)));
-  $$(".c-email").forEach((a) => { a.href = `mailto:${CONTACT.email}`; a.textContent = CONTACT.email; });
+  $$(".c-email").forEach((a) => (a.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent("Enquiry from the LUX96 website")}`));
   $$(".year").forEach((el) => (el.textContent = new Date().getFullYear()));
 
   /* ---------------- Loader ---------------- */
