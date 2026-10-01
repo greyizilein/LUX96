@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Custom kitchen cabinetry">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#efe5d6"/><stop offset="1" stop-color="#e2d2bb"/></linearGradient>
-    <linearGradient id="wood" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8a5a36"/><stop offset=".5" stop-color="#a06c43"/><stop offset="1" stop-color="#7a4d2c"/></linearGradient>
-  </defs>
-  <rect width="400" height="300" fill="url(#bg)"/>
-  <rect y="242" width="400" height="58" fill="#d8c5a8"/>
-  <g fill="url(#wood)" stroke="#4a3020" stroke-width="2" stroke-linejoin="round"><rect x="50" y="60" width="300" height="60" rx="3"/><path d="M125 62v56M200 62v56M275 62v56" fill="none"/><rect x="50" y="160" width="300" height="84" rx="3"/><rect x="44" y="150" width="312" height="12" rx="2" fill="#3b2a1e"/><path d="M125 162v80M200 162v80M275 162v80" fill="none"/><rect x="80" y="190" width="20" height="4" fill="#c9a46a" stroke="none"/><rect x="155" y="190" width="20" height="4" fill="#c9a46a" stroke="none"/><rect x="230" y="190" width="20" height="4" fill="#c9a46a" stroke="none"/><rect x="305" y="190" width="20" height="4" fill="#c9a46a" stroke="none"/></g>
-</svg>
