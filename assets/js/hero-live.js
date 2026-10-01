@@ -1,7 +1,7 @@
 /* ==========================================================
    LUX96 — the opening screen, always moving
    1. A live workshop clock (Lagos time) with open / closed state.
-   2. A showcase that cycles through the catalogue.
+   2. A muted, looping clip from the workshop floor (common.js plays it).
    3. Workshop life on the wood: a hand plane gliding along the
       grain, curled shavings spinning off it, dust in the light.
    ========================================================== */
@@ -43,50 +43,7 @@ window.LUX.afterCount(function () {
   tickClock();
   setInterval(tickClock, 1000);
 
-  /* ---------------- 2. Catalogue showcase ---------------- */
-  const PRICE_TYPE = { table: "table", sideboard: "sideboard", wardrobe: "wardrobe", bed: "bed", chair: "lounge", shelf: "shelf", desk: "desk", door: "door" };
-  const names = { walnut: "Walnut", oak: "Oak", iroko: "Iroko", mahogany: "Mahogany", teak: "Teak", ash: "Ash" };
-  const slides = $$(".work-track a.piece").map((a) => {
-    const c = $("canvas[data-piece]", a);
-    return { href: a.getAttribute("href"), no: $(".label", a).textContent, name: $("h3", a).textContent, kind: c.dataset.piece, species: c.dataset.species };
-  });
-  const show = $(".hero-show");
-  const cvs = $$(".hs-cv", show);
-  let front = 0, idx = 0;
-  const DURATION = 4200;
-  function paint(i, canvas) {
-    const s = slides[i];
-    Render.piece(canvas, s.kind, s.species);
-  }
-  function present(i) {
-    const s = slides[i];
-    const back = cvs[1 - front];
-    paint(i, back);
-    back.classList.add("on"); cvs[front].classList.remove("on");
-    front = 1 - front;
-    show.href = s.href;
-    show.setAttribute("aria-label", `${s.name}, from the catalogue`);
-    $(".hs-no").textContent = s.no;
-    const nm = $(".hs-name"); nm.classList.remove("swap"); void nm.offsetWidth; nm.classList.add("swap");
-    nm.textContent = s.name;
-    $(".hs-timber").textContent = names[s.species] || s.species;
-    if (window.LuxPrice && PRICE_TYPE[s.kind]) window.LuxPrice.odometer($(".hs-price"), window.LuxPrice.fromPrice(PRICE_TYPE[s.kind], s.species));
-    const bar = $(".hs-bar i"); bar.style.animation = "none"; void bar.offsetWidth; bar.style.animation = "";
-  }
-  if (slides.length) {
-    present(0);
-    if (!reduced) {
-      let elapsed = 0, prev = performance.now(), paused = false;
-      show.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") { paused = true; show.classList.add("paused"); } });
-      show.addEventListener("pointerleave", () => { paused = false; show.classList.remove("paused"); });
-      (function cycle(now) {
-        const dt = now - prev; prev = now;
-        if (!paused && heroVisible && pageVisible) elapsed += dt;
-        if (elapsed >= DURATION) { elapsed = 0; idx = (idx + 1) % slides.length; present(idx); }
-        requestAnimationFrame(cycle);
-      })(prev);
-    }
-  }
+  /* 2. The workshop clip itself is handled with every other clip in common.js (Film reels). */
 
   /* ---------------- 3. Workshop life on the wood ---------------- */
   const cv = $(".hero-fx");
@@ -133,7 +90,7 @@ window.LUX.afterCount(function () {
     plane.len = Math.max(110, Math.min(190, W * 0.16));
     plane.dir = Math.random() < 0.5 ? 1 : -1;
     plane.x = plane.dir > 0 ? -plane.len : W + plane.len;
-    // glide along a clear strip of wood, away from the text and the showcase card
+    // glide along a clear strip of wood, away from the text and the workshop clip
     plane.y = clearStrip(plane.len * 0.42);
     plane.speed = W / rand(2.8, 3.6);        // crosses the screen in ~3s
     plane.tilt = rand(-0.05, 0.05);
@@ -209,7 +166,8 @@ window.LUX.afterCount(function () {
       });
 
       // dust in the light: brighter near the lamp
-      const lx = (+($(".lx") || {}).textContent || 0.6) * W, ly = (1 - (+($(".ly") || {}).textContent || 0.55)) * Hh;
+      const lt = L.heroLight || { x: 0.6, y: 0.55 };
+      const lx = lt.x * W, ly = (1 - lt.y) * Hh;
       dust.forEach((d) => {
         d.x += d.vx * dt; d.y += d.vy * dt; d.ph += dt;
         if (d.y < -0.02) { d.y = 1.02; d.x = rand(0, 1); }

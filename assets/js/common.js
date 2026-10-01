@@ -269,6 +269,37 @@
   });
   addEventListener("pageshow", (e) => { if (e.persisted) curtain.className = "curtain"; });
 
+  /* ---------------- Film reels: <video data-src="path/name"> ---------------- */
+  // Nothing downloads during the 00→96 count. After it, a clip loads only when it comes near the
+  // screen, plays muted while at least a third of it is visible, and pauses otherwise (or when the
+  // tab is hidden). Reduced motion and data-saver keep the still poster. MP4 (H.264) where the
+  // browser plays it, WebM otherwise.
+  L.afterCount(() => {
+    const vids = $$("video[data-src]");
+    const saveData = navigator.connection && navigator.connection.saveData;
+    if (!vids.length || L.reduced || saveData || !("IntersectionObserver" in window)) return;
+    const ext = document.createElement("video").canPlayType('video/mp4; codecs="avc1.640028"') ? ".mp4" : ".webm";
+    const seen = new Map();
+    const sync = (v) => {
+      if (seen.get(v) && !document.hidden) { const p = v.play(); if (p) p.catch(() => {}); }
+      else v.pause();
+    };
+    const load = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      const v = e.target;
+      v.src = v.dataset.src + ext; v.preload = "auto";
+      v.addEventListener("playing", () => (v.closest("figure") || v).classList.add("rolling"), { once: true });
+      load.unobserve(v);
+      sync(v);
+    }), { rootMargin: "300px 0px" });
+    const play = new IntersectionObserver((es) => es.forEach((e) => {
+      seen.set(e.target, e.isIntersecting);
+      if (e.target.src) sync(e.target);
+    }), { threshold: 0.35 });
+    vids.forEach((v) => { load.observe(v); play.observe(v); });
+    document.addEventListener("visibilitychange", () => vids.forEach((v) => v.src && sync(v)));
+  });
+
   /* ---------------- Offline support & "Add to home screen" ---------------- */
   if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
     addEventListener("load", () => navigator.serviceWorker.register(`${root}sw.js`).catch(() => {}));

@@ -93,13 +93,21 @@ export const pieces = [
   },
 ];
 
+// Short clips in assets/video (each as .mp4 + .webm + .jpg poster). "tag" is honest about the source.
+export const films = {
+  workshop: { tag: "On the workshop floor", name: "Walnut &amp; resin table", sub: "Sanding and finishing", aria: "Sanding and finishing a walnut and resin dining table" },
+  zen: { tag: "Concept", name: "Riverstone coffee table", sub: "Walnut, river stones, clear resin", aria: "A round walnut coffee table being laid with river stones and filled with clear resin" },
+  resin: { tag: "Film: epic_artresin", name: "Botanical side table", sub: "Burl, botanicals, clear resin", aria: "A burl wood side table cast in clear resin with botanicals, then polished" },
+};
+
 export const services = [
   {
     slug: "custom-furniture", no: "01", species: "walnut",
     name: "Custom furniture", title: "Custom <em>furniture</em>",
     lede: "Tables, chairs, beds, consoles, sideboards — drawn around your room and built in solid timber.",
     intro: "Bring us a sketch, a photo, a measurement or just a problem (\"we need to seat ten in a narrow room\"). We draw it, show you timber samples, and build it to fit — not the other way round.",
-    makes: ["Dining tables & benches", "Chairs & lounge chairs", "Beds & bedside tables", "Sideboards & consoles", "Coffee & side tables", "Desks & shelving"],
+    makes: ["Dining tables & benches", "Chairs & lounge chairs", "Beds & bedside tables", "Sideboards & consoles", "Coffee & side tables", "Resin & river tables", "Desks & shelving"],
+    films: ["workshop", "zen", "resin"],
     steps: [["Talk", "Share your space, style and budget."], ["Draw", "We send drawings and a clear quote."], ["Build", "Made in the workshop, with progress photos."]],
     related: ["refectory-table", "lounge-chair", "pedestal-desk"],
   },

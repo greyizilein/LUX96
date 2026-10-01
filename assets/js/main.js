@@ -21,6 +21,7 @@ window.LUX.afterCount(function () {
   const heroSlab = Wood.slab($(".hero-slab"), "walnut", 3);
   const lx = $(".lx"), ly = $(".ly");
   let L = { x: 0.62, y: 0.58, tx: 0.62, ty: 0.58, user: false };
+  window.LUX.heroLight = L;   // hero-live.js lights the dust from here
   hero.addEventListener("pointermove", (e) => {
     const r = hero.getBoundingClientRect();
     L.tx = (e.clientX - r.left) / r.width; L.ty = 1 - (e.clientY - r.top) / r.height; L.user = true;
@@ -33,7 +34,7 @@ window.LUX.afterCount(function () {
       if (!L.user) { L.tx = 0.6 + Math.sin(t / 2600) * 0.22; L.ty = 0.55 + Math.cos(t / 3400) * 0.16; }
       L.x = lerp(L.x, L.tx, 0.06); L.y = lerp(L.y, L.ty, 0.06);
       heroSlab.setLight(L.x, L.y);
-      lx.textContent = L.x.toFixed(2); ly.textContent = L.y.toFixed(2);
+      if (lx) { lx.textContent = L.x.toFixed(2); ly.textContent = L.y.toFixed(2); }
     }
     requestAnimationFrame(heroLoop);
   })(0);
