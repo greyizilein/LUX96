@@ -128,6 +128,8 @@ ffmpeg -i name.mp4 -c:v libvpx-vp9 -b:v 0 -crf 40 name.webm
 ffmpeg -i name.mp4 -frames:v 1 name.jpg
 ```
 
+Real work: `sanding`, `assembly` and `walkaround` (videos) and `assets/img/work/` (styled photos of the dining chair and the chevron bed) are the workshop's own pieces. The photos were cut out of the original snapshots and placed in a lit room; the furniture itself is unedited.
+
 Captions say where a clip comes from: "Concept" for the AI-generated riverstone clip, and a film credit for
 clips by other makers. Replace these with the workshop's own footage when you have it.
 

@@ -95,7 +95,9 @@ export const pieces = [
 
 // Short clips in assets/video (each as .mp4 + .webm + .jpg poster). "tag" is honest about the source.
 export const films = {
-  workshop: { tag: "On the workshop floor", name: "Walnut &amp; resin table", sub: "Sanding and finishing", aria: "Sanding and finishing a walnut and resin dining table" },
+  sanding: { tag: "In the workshop", name: "Shaping a chair frame", sub: "Sanded by hand before staining", aria: "Sanding a chair frame by hand in the LUX96 workshop" },
+  assembly: { tag: "On site", name: "Assembling the chevron bed", sub: "Rails, headboard and fittings", aria: "Assembling the chevron upholstered bed on site" },
+  walkaround: { tag: "Finished", name: "The chevron bed, done", sub: "A walk around the finished set", aria: "A walk around the finished chevron bed and pouf" },
   zen: { tag: "Concept", name: "Riverstone coffee table", sub: "Walnut, river stones, clear resin", aria: "A round walnut coffee table being laid with river stones and filled with clear resin" },
   resin: { tag: "Film: epic_artresin", name: "Botanical side table", sub: "Burl, botanicals, clear resin", aria: "A burl wood side table cast in clear resin with botanicals, then polished" },
 };
@@ -107,7 +109,7 @@ export const services = [
     lede: "Tables, chairs, beds, consoles, sideboards — drawn around your room and built in solid timber.",
     intro: "Bring us a sketch, a photo, a measurement or just a problem (\"we need to seat ten in a narrow room\"). We draw it, show you timber samples, and build it to fit — not the other way round.",
     makes: ["Dining tables & benches", "Chairs & lounge chairs", "Beds & bedside tables", "Sideboards & consoles", "Coffee & side tables", "Resin & river tables", "Desks & shelving"],
-    films: ["workshop", "zen", "resin"],
+    films: ["sanding", "assembly", "walkaround"],
     steps: [["Talk", "Share your space, style and budget."], ["Draw", "We send drawings and a clear quote."], ["Build", "Made in the workshop, with progress photos."]],
     related: ["refectory-table", "lounge-chair", "pedestal-desk"],
   },
