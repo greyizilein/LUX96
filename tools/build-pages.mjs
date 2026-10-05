@@ -76,7 +76,7 @@ const filmsSection = (s, root) => `
         <div class="resin-copy">
           <p class="label sec-label">On film</p>
           <h2 class="display">From the <em>bench</em></h2>
-          <p class="resin-sub">Timber, stone and clear resin: the kind of piece we can draw and build for you.</p>
+          <p class="resin-sub">Real work from our workshop: a chair frame being shaped, and an upholstered bed going together.</p>
         </div>
         <div class="reels" tabindex="0" aria-label="Pieces on film — swipe for more">${s.films.map((k) => { const f = films[k]; return `
           <figure class="reel">

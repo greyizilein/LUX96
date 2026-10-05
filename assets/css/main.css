@@ -1275,7 +1275,7 @@ a.piece { display: block; color: inherit; }
 @keyframes live-pulse { from { transform: scale(.5); opacity: 1; } to { transform: scale(1.8); opacity: 0; } }
 
 .hero-reel {
-  position: relative; margin: 0; border-radius: 18px; overflow: hidden; background: #1a1511 url(../video/workshop.jpg) center / cover;
+  position: relative; margin: 0; border-radius: 18px; overflow: hidden; background: #1a1511 url(../video/sanding.jpg) center / cover;
   box-shadow: 0 30px 70px rgba(0, 0, 0, .45); transition: transform .6s var(--ease), box-shadow .6s;
 }
 .hero-reel:hover { transform: translateY(-4px); box-shadow: 0 40px 90px rgba(0, 0, 0, .55); }
@@ -1414,4 +1414,17 @@ a.piece { display: block; color: inherit; }
   .explore-grid li:first-child { grid-column: auto; }
   .explore-grid a { padding: 20px 20px 22px; }
   .explore-grid b { font-size: 24px; }
+}
+
+/* Recent work: real photos and films side by side in the reel row */
+.reel > img { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; max-height: 78svh; object-fit: cover; }
+.reel-link { position: absolute; inset: 0; z-index: 2; border-radius: inherit; }
+.reel-link:focus-visible { outline: 2px solid var(--brass); outline-offset: -2px; }
+.recent .resin-copy { max-width: 40em; }
+@media (min-width: 760px) {
+  .recent .resin-inner { grid-template-columns: 1fr; }
+  .recent .reels { grid-auto-columns: minmax(0, 1fr); }
+  .recent .reel:nth-child(2n) { translate: 0 40px; }
+  .recent .reel:nth-child(2) { translate: 0 40px; }
+  .recent { padding-bottom: clamp(110px, 12vw, 190px); }
 }
