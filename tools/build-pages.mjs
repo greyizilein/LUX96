@@ -41,7 +41,7 @@ function page({ root, title, description, bodyClass, main, ld = [], scripts = DE
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${title}</title>
   <meta name="description" content="${esc(description)}">
-  <meta name="theme-color" content="#120e0b">${robots ? `\n  <meta name="robots" content="${robots}">` : ""}
+  <meta name="theme-color" content="#1B2632">${robots ? `\n  <meta name="robots" content="${robots}">` : ""}
   <meta name="lux-root" content="${root}">
   <link rel="icon" href="${root}assets/img/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="${root}manifest.webmanifest">
