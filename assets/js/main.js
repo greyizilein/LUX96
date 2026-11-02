@@ -65,10 +65,10 @@ window.LUX.afterCount(function () {
   for (let i = 0; i < RN; i++) ringW.push(0.6 + rand() * 0.9 + (i % 9 === 0 ? 0.8 : 0));
   const ringSum = ringW.reduce((a, b) => a + b, 0);
   const wob = Array.from({ length: 7 }, (_, j) => [rand() * 6.28, (0.004 + rand() * 0.01) / (1 + j * 0.35)]);
-  let lastRings = -1, ringRGB = "200,161,101", ringHi = "rgba(230,197,138,.95)";
+  let lastRings = -1, ringRGB = "200,161,101", ringHi = "rgba(255,177,98,.95)";
   const ringColours = () => {
     const light = document.documentElement.dataset.theme === "light";
-    ringRGB = light ? "138,97,37" : "200,161,101"; ringHi = light ? "rgba(120,80,25,.95)" : "rgba(230,197,138,.95)";
+    ringRGB = light ? "138,97,37" : "200,161,101"; ringHi = light ? "rgba(120,80,25,.95)" : "rgba(255,177,98,.95)";
   };
   ringColours();
   document.addEventListener("lux:theme", () => { ringColours(); lastRings = -1; onScroll(); });

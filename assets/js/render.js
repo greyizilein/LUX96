@@ -19,7 +19,7 @@
 
   function studio(ctx, W, H, floorY) {
     const bg = ctx.createLinearGradient(0, 0, 0, H);
-    bg.addColorStop(0, "#2a221c"); bg.addColorStop(floorY / H, "#1b1612"); bg.addColorStop(1, "#120e0b");
+    bg.addColorStop(0, "#2C3B4D"); bg.addColorStop(floorY / H, "#223041"); bg.addColorStop(1, "#1B2632");
     ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
     const glow = ctx.createRadialGradient(W * 0.3, H * 0.15, 0, W * 0.3, H * 0.15, W * 0.9);
     glow.addColorStop(0, "rgba(255,214,160,.16)"); glow.addColorStop(1, "rgba(255,214,160,0)");
@@ -275,7 +275,7 @@
   function tablePlan(canvas, cfg) {
     const ctx = setup(canvas);
     const W = canvas.width, H = canvas.height;
-    ctx.fillStyle = "#16110d"; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = "#1B2632"; ctx.fillRect(0, 0, W, H);
 
     const L = cfg.shape === "round" ? cfg.width : cfg.length, Wd = cfg.width;
     const s = Math.min((W * 0.62) / (L + 110), (H * 0.62) / (Wd + 110)) * 1.25;
